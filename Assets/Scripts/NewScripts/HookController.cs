@@ -30,17 +30,32 @@ public class HookController : MonoBehaviour
 
             if (hit.collider != null)
             {
-                grapplePoint = hit.point;
-                joint.connectedAnchor = grapplePoint;
-                joint.distance = Vector2.Distance(transform.position, grapplePoint);
-                joint.enabled = true;
+                    grapplePoint = hit.point;
 
-                if (line != null)
-                {
-                    line.enabled = true;
-                    line.SetPosition(0, grapplePoint);
-                    line.SetPosition(1, transform.position);
-                }
+                    joint.autoConfigureDistance = false;
+                    joint.autoConfigureConnectedAnchor = false;
+
+                    if (hit.rigidbody != null && hit.rigidbody.CompareTag("BoxAttacheable"))
+                    {
+                        joint.connectedBody = hit.rigidbody;
+                        joint.connectedAnchor = hit.rigidbody.transform.InverseTransformPoint(hit.point);
+                    }
+                    else
+                    {
+                        joint.connectedBody = null;
+                        joint.connectedAnchor = grapplePoint;
+                    }
+
+                    joint.distance = Vector2.Distance(transform.position, grapplePoint);
+                    joint.enableCollision = true;
+                    joint.enabled = true;
+
+                    if (line != null)
+                    {
+                        line.enabled = true;
+                        line.SetPosition(0, grapplePoint);
+                        line.SetPosition(1, transform.position);
+                    }
             }
         }
 
@@ -49,13 +64,18 @@ public class HookController : MonoBehaviour
         {
             joint.enabled = false;
             if (line != null)
+            {
                 line.enabled = false;
+            }
         }
 
         // Update line position
         if (line != null && line.enabled)
+        {
             line.SetPosition(1, transform.position);
-
+            line.SetPosition(0, joint.connectedBody.transform.position);
+        }
+           
         //  Adjust grapple length dynamically
         if (joint.enabled)
         {
@@ -75,4 +95,5 @@ public class HookController : MonoBehaviour
             }
         }
     }
+   
 }
