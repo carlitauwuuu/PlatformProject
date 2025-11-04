@@ -16,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
     [SerializeField] LayerMask groundLayer;
 
-   // SoundManager soundManager; 
+
+    // SoundManager soundManager; 
 
     void Start()
     {

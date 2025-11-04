@@ -69,6 +69,7 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
+   
     private void ActivateForm(GameObject formToActivate)
     {
         
@@ -84,6 +85,7 @@ public class PlayerShooting : MonoBehaviour
         
         if (formToActivate == orangeForm)
             gameObject.layer = LayerMask.NameToLayer("Orange");
+           
         else if (formToActivate == greenForm)
             gameObject.layer = LayerMask.NameToLayer("Green");
         else if (formToActivate == pinkForm)
