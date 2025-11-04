@@ -2279,9 +2279,9 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.02622515, y: -0.4091727}
-  m_Size: {x: 1.1724352, y: 1.1724352}
-  m_Direction: 0
+  m_Offset: {x: -0.15255684, y: -0.34894857}
+  m_Size: {x: 1.5247003, y: 0.731787}
+  m_Direction: 1
 --- !u!114 &962274574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2297,7 +2297,7 @@ MonoBehaviour:
   playerSpeed: 4
   jumpForce: 6
   groundCheckPos: {fileID: 1184119356}
-  groundCheckSize: {x: 0.63, y: 0.58}
+  groundCheckSize: {x: 0.63, y: 0.15}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -3009,7 +3009,7 @@ Transform:
   m_GameObject: {fileID: 1184119355}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.018, z: 0}
+  m_LocalPosition: {x: 0, y: -0.754, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
