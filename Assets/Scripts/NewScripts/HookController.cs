@@ -28,34 +28,34 @@ public class HookController : MonoBehaviour
             Vector2 direction = (worldMouse - (Vector2)shootingPosition.transform.position).normalized;
 
             RaycastHit2D hit = Physics2D.Raycast(shootingPosition.transform.position, direction, grappleLength, grappleLayer);
-            if (hit.collider != null && hit.transform.gameObject.tag != "Player")
+            if (hit.collider != null && hit.transform.gameObject.tag != "Player" && gameObject.layer == hit.transform.gameObject.layer)
             {
-                    grapplePoint = hit.point;
+                grapplePoint = hit.point;
+                joint.autoConfigureDistance = false;
+                joint.autoConfigureConnectedAnchor = false;
 
-                    joint.autoConfigureDistance = false;
-                    joint.autoConfigureConnectedAnchor = false;
+                if (hit.rigidbody != null && hit.rigidbody.CompareTag("BoxAttacheable"))
+                {
+                    joint.connectedBody = hit.rigidbody;
+                    joint.connectedAnchor = hit.rigidbody.transform.InverseTransformPoint(hit.point);
+                }
+                else
+                {
+                    joint.connectedBody = hit.rigidbody;
+                    joint.connectedAnchor = hit.rigidbody.transform.InverseTransformPoint(hit.point);
+                }
 
-                    if (hit.rigidbody != null && hit.rigidbody.CompareTag("BoxAttacheable"))
-                    {
-                        joint.connectedBody = hit.rigidbody;
-                        joint.connectedAnchor = hit.rigidbody.transform.InverseTransformPoint(hit.point);
-                    }
-                    else
-                    {
-                        joint.connectedBody = null;
-                        joint.connectedAnchor = grapplePoint;
-                    }
 
-                    joint.distance = Vector2.Distance(transform.position, grapplePoint);
-                    joint.enableCollision = true;
-                    joint.enabled = true;
+                joint.distance = Vector2.Distance(transform.position, grapplePoint);
+                joint.enableCollision = true;
+                joint.enabled = true;
 
-                    if (line != null)
-                    {
-                        line.enabled = true;
-                        line.SetPosition(0, grapplePoint);
-                        line.SetPosition(1, transform.position);
-                    }
+                if (line != null)
+                {
+                    line.enabled = true;
+                    line.SetPosition(0, grapplePoint);
+                    line.SetPosition(1, transform.position);
+                }
             }
         }
 
@@ -72,10 +72,10 @@ public class HookController : MonoBehaviour
         // Update line position
         if (line != null && line.enabled)
         {
-            line.SetPosition(1, shootingPosition.transform.position);
+            line.SetPosition(1, transform.position);
             line.SetPosition(0, joint.connectedBody.transform.position);
         }
-           
+
         //  Adjust grapple length dynamically
         if (joint.enabled)
         {
@@ -95,5 +95,5 @@ public class HookController : MonoBehaviour
             }
         }
     }
-   
+
 }
