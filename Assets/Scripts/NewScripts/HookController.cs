@@ -5,6 +5,7 @@ public class HookController : MonoBehaviour
     [SerializeField] private float grappleLength = 10f;
     [SerializeField] private LayerMask grappleLayer;
     [SerializeField] private LineRenderer line;
+    [SerializeField] private GameObject shootingPosition;
 
     private Vector3 grapplePoint;
     private DistanceJoint2D joint;
@@ -24,11 +25,10 @@ public class HookController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 worldMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = (worldMouse - (Vector2)transform.position).normalized;
+            Vector2 direction = (worldMouse - (Vector2)shootingPosition.transform.position).normalized;
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, grappleLength, grappleLayer);
-
-            if (hit.collider != null)
+            RaycastHit2D hit = Physics2D.Raycast(shootingPosition.transform.position, direction, grappleLength, grappleLayer);
+            if (hit.collider != null && hit.transform.gameObject.tag != "Player")
             {
                     grapplePoint = hit.point;
 
@@ -72,7 +72,7 @@ public class HookController : MonoBehaviour
         // Update line position
         if (line != null && line.enabled)
         {
-            line.SetPosition(1, transform.position);
+            line.SetPosition(1, shootingPosition.transform.position);
             line.SetPosition(0, joint.connectedBody.transform.position);
         }
            

@@ -28,6 +28,19 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         playerRigidbody2d.linearVelocity = new Vector2(playerDirection.x * playerSpeed, playerRigidbody2d.linearVelocityY);
+        
+        if(playerDirection.x < -0.1)
+        {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        }
+        else if(playerDirection.x > 0.1)
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = transform.localScale;
+        }
     }
 
     public void Move(InputAction.CallbackContext context)
