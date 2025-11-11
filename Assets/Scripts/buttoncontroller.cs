@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class buttoncontroller : MonoBehaviour
 {
-    [SerializeField] private GameObject dispenser;
+    [SerializeField] private GameObject buttondoor;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        dispenser.GetComponent<CapsuleCollider2D>().enabled = true;
+        buttondoor.GetComponent<CapsuleCollider2D>().enabled = true;
         gameObject.SetActive(false);
     }
 }

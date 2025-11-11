@@ -1,16 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class dispensercontroller : MonoBehaviour
+public class dispenercontroller : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+public void spawn 
+    { 
+    
+    }    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
