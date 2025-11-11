@@ -41,22 +41,22 @@ public class PlayerShooting : MonoBehaviour
                 pointer.transform.position = hit.point;
 
                
-                if (hit.collider.CompareTag("Orange"))
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Orange") && hit.collider.CompareTag("Fly"))
                 {
                     ActivateForm(orangeForm);
                     StartCoroutine(TemporarilyDisable(hit.collider.gameObject));
                 }
-                else if (hit.collider.CompareTag("Green"))
+                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Green") && hit.collider.CompareTag("Fly"))
                 {
                     ActivateForm(greenForm);
                     StartCoroutine(TemporarilyDisable(hit.collider.gameObject));
                 }
-                else if (hit.collider.CompareTag("Pink"))
+                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Pink") && hit.collider.CompareTag("Fly"))
                 {
                     ActivateForm(pinkForm);
                     StartCoroutine(TemporarilyDisable(hit.collider.gameObject));
                 }
-                else if (hit.collider.CompareTag("Yellow"))
+                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Yellow") && hit.collider.CompareTag("Fly"))
                 {
                     ActivateForm(yellowForm);
                     StartCoroutine(TemporarilyDisable(hit.collider.gameObject));
@@ -84,14 +84,21 @@ public class PlayerShooting : MonoBehaviour
 
         
         if (formToActivate == orangeForm)
+        {
             gameObject.layer = LayerMask.NameToLayer("Orange");
-           
+        }
         else if (formToActivate == greenForm)
+        {
             gameObject.layer = LayerMask.NameToLayer("Green");
+        }
         else if (formToActivate == pinkForm)
+        {
             gameObject.layer = LayerMask.NameToLayer("Pink");
-        else if (formToActivate == yellowForm)
+        }           
+        else if (formToActivate == yellowForm)       
+        {
             gameObject.layer = LayerMask.NameToLayer("Yellow");
+        }
 
         Debug.Log("Player layer set to: " + LayerMask.LayerToName(gameObject.layer));
     }

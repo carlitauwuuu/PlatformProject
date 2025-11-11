@@ -13,6 +13,7 @@ TagManager:
   - Pink
   - BoxAttacheable
   - FruitAttacheable
+  - Fly
   layers:
   - Default
   - TransparentFX

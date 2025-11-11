@@ -1544,9 +1544,9 @@ GameObject:
   - component: {fileID: 729768540}
   - component: {fileID: 729768539}
   - component: {fileID: 729768538}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Yellow
-  m_TagString: Yellow
+  m_TagString: Fly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1656,9 +1656,9 @@ GameObject:
   - component: {fileID: 735837477}
   - component: {fileID: 735837476}
   - component: {fileID: 735837478}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Orange
-  m_TagString: Orange
+  m_TagString: Fly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2289,9 +2289,9 @@ GameObject:
   - component: {fileID: 1267130155}
   - component: {fileID: 1267130154}
   - component: {fileID: 1267130153}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Green
-  m_TagString: Green
+  m_TagString: Fly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2742,9 +2742,9 @@ GameObject:
   - component: {fileID: 1699441680}
   - component: {fileID: 1699441679}
   - component: {fileID: 1699441678}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pink
-  m_TagString: Pink
+  m_TagString: Fly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3391,6 +3391,10 @@ PrefabInstance:
     - target: {fileID: 5179350603401745767, guid: 1f62645964dda2943b2b3b034682ee63, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8098334021299529424, guid: 1f62645964dda2943b2b3b034682ee63, type: 3}
+      propertyPath: yellowLayer.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
