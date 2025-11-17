@@ -19,16 +19,22 @@ public class PlayerMovement : MonoBehaviour
 
     // SoundManager soundManager; 
 
+    Animator animator;
+
+
     void Start()
     {
        playerRigidbody2d = GetComponent<Rigidbody2D>();
       // soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+      animator = GetComponent<Animator>();
+
     }
 
     void FixedUpdate()
     {
         playerRigidbody2d.linearVelocity = new Vector2(playerDirection.x * playerSpeed, playerRigidbody2d.linearVelocityY);
-        
+        animator.SetFloat("xVel", Mathf.Abs(playerRigidbody2d.linearVelocityX));
+
         if(playerDirection.x < -0.1)
         {
             transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
