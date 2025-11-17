@@ -1,10 +1,14 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[SerializeField]
 public class dispenercontroller : MonoBehaviour
 
 {
+    public GameObject DispBoxOrange;
+    private void Start()
+    {
    
+    }
 
 }

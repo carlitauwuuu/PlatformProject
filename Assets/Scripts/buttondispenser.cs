@@ -2,13 +2,23 @@ using UnityEngine;
 
 public class buttondispenser : MonoBehaviour
 {
-    [SerializeField] private GameObject buttondispen;
-
+    public GameObject Box;
+    public Transform spawn;
+   
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        buttondispen.GetComponent<CapsuleCollider2D>().enabled = true;
-       // Instantiate.(false);
+        if (collision.CompareTag("Player"))
+        {
+            Spawnitem();
+            gameObject.SetActive(false);
+        }
+        
+    }
+    void Spawnitem()
+    {
+        Instantiate(Box, spawn.position, Quaternion.identity);
     }
 }
+
 

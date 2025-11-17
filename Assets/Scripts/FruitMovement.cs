@@ -29,6 +29,8 @@ public class FruitMovement : MonoBehaviour
             {
                 direction = 1;
             }
+       
+                
         }
     
 }
