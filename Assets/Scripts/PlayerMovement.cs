@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float playerSpeed = 2f;
     private Rigidbody2D playerRigidbody2d;
     private Vector2 playerDirection;
+    private ParticleSystem walkParticles;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 5f;
@@ -27,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
        playerRigidbody2d = GetComponent<Rigidbody2D>();
       // soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
       animator = GetComponent<Animator>();
+      walkParticles = GetComponentInChildren<ParticleSystem>();
 
     }
 
@@ -78,4 +81,10 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(groundCheckPos.position, groundCheckSize);
     }
+
+    public void EmitWalkParticles()
+    {
+        walkParticles.Emit(1);
+    }
+
 }
