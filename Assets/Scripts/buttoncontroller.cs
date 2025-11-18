@@ -7,7 +7,7 @@ public class buttoncontroller : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        buttondoor.GetComponent<CapsuleCollider2D>().enabled = true;
+        buttondoor.GetComponent<BoxCollider2D>().enabled = true;
         gameObject.SetActive(false);
     }
 }
