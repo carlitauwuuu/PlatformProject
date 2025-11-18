@@ -13,8 +13,8 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private GameObject greenForm;
     [SerializeField] private GameObject pinkForm;
     [SerializeField] private GameObject yellowForm;
-
-    private GameObject currentForm;
+    [SerializeField] private GameObject playerSprite;
+    [SerializeField] private Sprite[] formSprite = new Sprite[] {};
 
     void Start()
     {
@@ -24,8 +24,8 @@ public class PlayerShooting : MonoBehaviour
         mainCamera = Camera.main;
 
         //orange default
-        currentForm = orangeForm;
-        ActivateForm(currentForm);
+       
+        ActivateForm(0);
     }
 
     void Update()
@@ -43,22 +43,22 @@ public class PlayerShooting : MonoBehaviour
                
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Orange") && hit.collider.CompareTag("Fly"))
                 {
-                    ActivateForm(orangeForm);
+                    ActivateForm(0);
                     StartCoroutine(TemporarilyDisable(hit.collider.gameObject));
                 }
                 else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Green") && hit.collider.CompareTag("Fly"))
                 {
-                    ActivateForm(greenForm);
+                    ActivateForm(1);
                     StartCoroutine(TemporarilyDisable(hit.collider.gameObject));
                 }
                 else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Pink") && hit.collider.CompareTag("Fly"))
                 {
-                    ActivateForm(pinkForm);
+                    ActivateForm(2);
                     StartCoroutine(TemporarilyDisable(hit.collider.gameObject));
                 }
                 else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Yellow") && hit.collider.CompareTag("Fly"))
                 {
-                    ActivateForm(yellowForm);
+                    ActivateForm(3);
                     StartCoroutine(TemporarilyDisable(hit.collider.gameObject));
                 }
             }
@@ -70,34 +70,29 @@ public class PlayerShooting : MonoBehaviour
     }
 
    
-    private void ActivateForm(GameObject formToActivate)
+    private void ActivateForm(int formToActivate)
     {
-        
-        orangeForm.SetActive(false);
-        greenForm.SetActive(false);
-        pinkForm.SetActive(false);
-        yellowForm.SetActive(false);
 
-        
-        formToActivate.SetActive(true);
-        currentForm = formToActivate;
-
-        
-        if (formToActivate == orangeForm)
+      
+        if (formToActivate == 0)
         {
             gameObject.layer = LayerMask.NameToLayer("Orange");
+            playerSprite.GetComponent<SpriteRenderer>().sprite = formSprite[formToActivate];
         }
-        else if (formToActivate == greenForm)
+        else if (formToActivate == 1)
         {
             gameObject.layer = LayerMask.NameToLayer("Green");
+            playerSprite.GetComponent<SpriteRenderer>().sprite = formSprite[formToActivate];
         }
-        else if (formToActivate == pinkForm)
+        else if (formToActivate == 2)
         {
             gameObject.layer = LayerMask.NameToLayer("Pink");
+            playerSprite.GetComponent<SpriteRenderer>().sprite = formSprite[formToActivate];
         }           
-        else if (formToActivate == yellowForm)       
+        else if (formToActivate == 3)       
         {
             gameObject.layer = LayerMask.NameToLayer("Yellow");
+            playerSprite.GetComponent<SpriteRenderer>().sprite = formSprite[formToActivate];
         }
 
         Debug.Log("Player layer set to: " + LayerMask.LayerToName(gameObject.layer));
