@@ -5935,6 +5935,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57190a8b116e3dd48aa0f82dcc4bb757, type: 3}
+--- !u!1001 &1245441387914207578
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5536021014770689529, guid: 6b420a0cf5232744ba1d8762b85241de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.6667001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536021014770689529, guid: 6b420a0cf5232744ba1d8762b85241de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.0695882
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536021014770689529, guid: 6b420a0cf5232744ba1d8762b85241de, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.04334116
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536021014770689529, guid: 6b420a0cf5232744ba1d8762b85241de, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536021014770689529, guid: 6b420a0cf5232744ba1d8762b85241de, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536021014770689529, guid: 6b420a0cf5232744ba1d8762b85241de, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536021014770689529, guid: 6b420a0cf5232744ba1d8762b85241de, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536021014770689529, guid: 6b420a0cf5232744ba1d8762b85241de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536021014770689529, guid: 6b420a0cf5232744ba1d8762b85241de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536021014770689529, guid: 6b420a0cf5232744ba1d8762b85241de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091352053288085134, guid: 6b420a0cf5232744ba1d8762b85241de, type: 3}
+      propertyPath: m_Name
+      value: FruitMovingPrefab
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b420a0cf5232744ba1d8762b85241de, type: 3}
 --- !u!1001 &1708579221306538570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6491,6 +6548,7 @@ SceneRoots:
   - {fileID: 1894989121}
   - {fileID: 36584512}
   - {fileID: 2002454557}
+  - {fileID: 1245441387914207578}
   - {fileID: 1521148023}
   - {fileID: 263595085}
   - {fileID: 651112671014797227}
