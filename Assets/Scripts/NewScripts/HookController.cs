@@ -21,7 +21,7 @@ public class HookController : MonoBehaviour
 
     void Update()
     {
-        // Shoot grapple
+        // tom hanks
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 worldMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -59,7 +59,7 @@ public class HookController : MonoBehaviour
             }
         }
 
-        // Release grapple
+        
         if (Input.GetMouseButtonDown(1))
         {
             joint.enabled = false;
