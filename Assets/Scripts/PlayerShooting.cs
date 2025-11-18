@@ -15,6 +15,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private GameObject yellowForm;
     [SerializeField] private GameObject playerSprite;
     [SerializeField] private Sprite[] formSprite = new Sprite[] {};
+    [SerializeField] private int StartForm = 0;
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class PlayerShooting : MonoBehaviour
 
         //orange default
        
-        ActivateForm(0);
+        ActivateForm(StartForm);
     }
 
     void Update()

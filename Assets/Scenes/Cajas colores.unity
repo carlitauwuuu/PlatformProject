@@ -6410,6 +6410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player.NEWSYS
       objectReference: {fileID: 0}
+    - target: {fileID: 8006464553624757502, guid: f865b097e2e97864eb773e88aa4bd2f6, type: 3}
+      propertyPath: StartForm
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
