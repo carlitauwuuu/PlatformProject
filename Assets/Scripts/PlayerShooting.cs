@@ -41,7 +41,13 @@ public class PlayerShooting : MonoBehaviour
             {
                 pointer.transform.position = hit.point;
 
-               
+                float distance = Vector3.Distance(transform.position, hit.collider.transform.position);
+                if (distance > 3f)
+                {
+                    Debug.Log("muy lejos.");
+                    return;
+                }
+
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Orange") && hit.collider.CompareTag("Fly"))
                 {
                     ActivateForm(0);
@@ -101,8 +107,9 @@ public class PlayerShooting : MonoBehaviour
 
     private IEnumerator TemporarilyDisable(GameObject circle)
     {
-        circle.SetActive(false);           
-        yield return new WaitForSeconds(5f); 
-        circle.SetActive(true);            
+        circle.SetActive(false);
+        yield return null;  
+        Destroy(circle);    
     }
+
 }
