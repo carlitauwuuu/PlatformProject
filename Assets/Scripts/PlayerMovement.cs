@@ -59,11 +59,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
+        animator.SetBool("isJumping", true);
         if (IsGrounded())
         {
             if (context.performed)
             {
                 playerRigidbody2d.linearVelocity = new Vector2(playerRigidbody2d.linearVelocityX, jumpForce);
+                
             }
         }     
     }
@@ -71,8 +73,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0 , groundLayer))
         {
+            animator.SetBool("isJumping", false);
             return true;
         }
+        
         return false;
     }
 
@@ -86,5 +90,6 @@ public class PlayerMovement : MonoBehaviour
     {
         walkParticles.Emit(1);
     }
+    
 
 }
