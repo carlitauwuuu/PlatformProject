@@ -1,10 +1,28 @@
 fileFormatVersion: 2
-guid: 9c9b2de62082e2b4796862f878956b28
+guid: 7ff2ce85793ac8e4989112496109b5e5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2094536465348969931
-    second: "Disseny_sense_t\xEDtol-removebg-preview_0"
+      213: -3327893968578585566
+    second: "Ilustracio\u0301n_sin_ti\u0301tulo (8)_0"
+  - first:
+      213: 7663455549812173288
+    second: "Ilustracio\u0301n_sin_ti\u0301tulo (8)_1"
+  - first:
+      213: -215169022590754877
+    second: "Ilustracio\u0301n_sin_ti\u0301tulo (8)_2"
+  - first:
+      213: 7275440302999520238
+    second: "Ilustracio\u0301n_sin_ti\u0301tulo (8)_3"
+  - first:
+      213: 3181925356847292722
+    second: "Ilustracio\u0301n_sin_ti\u0301tulo (8)_4"
+  - first:
+      213: 721124819297737443
+    second: "Ilustracio\u0301n_sin_ti\u0301tulo (8)_5"
+  - first:
+      213: -7348034104760814706
+    second: "Ilustracio\u0301n_sin_ti\u0301tulo (8)_6"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +118,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Disseny_sense_t\xEDtol-removebg-preview_0"
+      name: patitas_0
       rect:
         serializedVersion: 2
-        x: 84
-        y: 164
-        width: 344
-        height: 211
+        x: 728
+        y: 102
+        width: 1600
+        height: 798
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bc54a3261d9411d10800000000000000
-      internalID: 2094536465348969931
+      spriteID: bf87bb58dcf4dea4fab3f9f794531f9a
+      internalID: -1350336408
       vertices: []
       indices: 
       edges: []
@@ -125,7 +143,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9ee00fa8f347ff5488717c76ece052c0
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +153,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "Disseny_sense_t\xEDtol-removebg-preview_0": 2094536465348969931
+      "Ilustracio\u0301n_sin_ti\u0301tulo (8)_0": -3327893968578585566
+      "Ilustracio\u0301n_sin_ti\u0301tulo (8)_1": 7663455549812173288
+      "Ilustracio\u0301n_sin_ti\u0301tulo (8)_2": -215169022590754877
+      "Ilustracio\u0301n_sin_ti\u0301tulo (8)_3": 7275440302999520238
+      "Ilustracio\u0301n_sin_ti\u0301tulo (8)_4": 3181925356847292722
+      "Ilustracio\u0301n_sin_ti\u0301tulo (8)_5": 721124819297737443
+      "Ilustracio\u0301n_sin_ti\u0301tulo (8)_6": -7348034104760814706
+      patitas_0: -1350336408
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: d2aacf2500176324291a56375fe4a4aa
+guid: cf9654ac813b64042a59bbfb9cf4acde
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5050359080263773069
-    second: "Disseny_sense_t\xEDtol-removebg-preview (1)_0"
+      213: -2362142496030901803
+    second: "Ilustracio\u0301n_sin_ti\u0301tulo (3)_0"
+  - first:
+      213: 7914556894745374124
+    second: "Ilustracio\u0301n_sin_ti\u0301tulo (3)_1"
+  - first:
+      213: 2651501363503651216
+    second: "Ilustracio\u0301n_sin_ti\u0301tulo (3)_2"
+  - first:
+      213: 3239427549701369821
+    second: "Ilustracio\u0301n_sin_ti\u0301tulo (3)_3"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Disseny_sense_t\xEDtol-removebg-preview (1)_0"
+      name: "Ilustracio\u0301n_sin_ti\u0301tulo (3)_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 500
-        height: 500
+        x: 1367
+        y: 1063
+        width: 96
+        height: 136
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 37495b8ac2589e9b0800000000000000
-      internalID: -5050359080263773069
+      spriteID: 5d9393f3aebf73fd0800000000000000
+      internalID: -2362142496030901803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ilustracio\u0301n_sin_ti\u0301tulo (3)_1"
+      rect:
+        serializedVersion: 2
+        x: 1463
+        y: 1098
+        width: 116
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cadaae9009726dd60800000000000000
+      internalID: 7914556894745374124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ilustracio\u0301n_sin_ti\u0301tulo (3)_2"
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1101
+        width: 95
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 099591d11760cc420800000000000000
+      internalID: 2651501363503651216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ilustracio\u0301n_sin_ti\u0301tulo (3)_3"
+      rect:
+        serializedVersion: 2
+        x: 1825
+        y: 1017
+        width: 203
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddf60977132c4fc20800000000000000
+      internalID: 3239427549701369821
       vertices: []
       indices: 
       edges: []
@@ -125,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "Disseny_sense_t\xEDtol-removebg-preview (1)_0": -5050359080263773069
+      "Ilustracio\u0301n_sin_ti\u0301tulo (3)_0": -2362142496030901803
+      "Ilustracio\u0301n_sin_ti\u0301tulo (3)_1": 7914556894745374124
+      "Ilustracio\u0301n_sin_ti\u0301tulo (3)_2": 2651501363503651216
+      "Ilustracio\u0301n_sin_ti\u0301tulo (3)_3": 3239427549701369821
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

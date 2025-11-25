@@ -27,6 +27,7 @@ public class PlayerShooting : MonoBehaviour
         //orange default
        
         ActivateForm(StartForm);
+     
     }
 
     void Update()
