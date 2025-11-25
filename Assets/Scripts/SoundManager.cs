@@ -1,22 +1,21 @@
 using UnityEngine;
-
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance;
+    public static SoundManager Instance { get; private set;}
 
     public AudioSource musicSource;
-
+    [SerializeField] AudioSource playerSound;
     private void Awake()
     {
         
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); 
+        
         }
         else
         {
-            Destroy(gameObject); 
+            Debug.LogError("There is two or more Sound manager");
         }
     }
 
@@ -27,5 +26,10 @@ public class SoundManager : MonoBehaviour
         musicSource.clip = clip;
         musicSource.loop = loop;
         musicSource.Play();
+    }
+    public void PlayerSound(AudioClip audioClip) 
+    {
+        playerSound.clip = audioClip;
+        playerSound.Play();
     }
 }

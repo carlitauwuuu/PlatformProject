@@ -18,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
     [SerializeField] LayerMask groundLayer;
 
-
+    [Header("Sound")]
+    [SerializeField] private AudioClip jumpSound;
     // SoundManager soundManager; 
 
     Animator animator;
@@ -50,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = transform.localScale;
         }
+
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -59,13 +61,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        animator.SetBool("isJumping", true);
+        
         if (IsGrounded())
         {
             if (context.performed)
             {
                 playerRigidbody2d.linearVelocity = new Vector2(playerRigidbody2d.linearVelocityX, jumpForce);
-                
+                SoundManager.Instance.PlayerSound(jumpSound);
+                animator.SetBool("isJumping", true);
             }
         }     
     }
@@ -73,7 +76,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0 , groundLayer))
         {
-            animator.SetBool("isJumping", false);
             return true;
         }
         
@@ -90,6 +92,4 @@ public class PlayerMovement : MonoBehaviour
     {
         walkParticles.Emit(1);
     }
-    
-
 }
