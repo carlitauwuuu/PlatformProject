@@ -19,6 +19,8 @@ public class GrapplingGun : MonoBehaviour
     [Header("Rotation:")]
     [SerializeField] private bool rotateOverTime = true;
     [Range(0, 80)] [SerializeField] private float rotationSpeed = 4;
+    [SerializeField] float maxAngle = 90f;
+    private bool isGrappling = false;
 
     [Header("Distance:")]
     [SerializeField] private bool hasMaxDistance = true;
@@ -34,7 +36,6 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private float targetDistance = 3;
     [SerializeField] private float targetFrequency = 3;
 
-
     private enum LaunchType
     {
         Transform_Launch,
@@ -48,14 +49,13 @@ public class GrapplingGun : MonoBehaviour
     [HideInInspector] public Vector2 DistanceVector;
     Vector2 Mouse_FirePoint_DistanceVector;
 
-    public Rigidbody2D ballRigidbody;
+    public Rigidbody2D playerRB;
 
 
     private void Start()
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
-        ballRigidbody.gravityScale = 1;
     }
 
     private void Update()
@@ -90,7 +90,7 @@ public class GrapplingGun : MonoBehaviour
         {
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
-            ballRigidbody.gravityScale = 1;
+            isGrappling = false;
         }
         else
         {
@@ -120,6 +120,7 @@ public class GrapplingGun : MonoBehaviour
             RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, Mouse_FirePoint_DistanceVector.normalized);
             if ((_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll) && ((Vector2.Distance(_hit.point, firePoint.position) <= maxDistance) || !hasMaxDistance))
             {
+                isGrappling = true;
                 grapplePoint = _hit.point;
                 DistanceVector = grapplePoint - (Vector2)gunPivot.position;
                 grappleRope.enabled = true;
@@ -145,22 +146,6 @@ public class GrapplingGun : MonoBehaviour
             }
             m_springJoint2D.connectedAnchor = grapplePoint;
             m_springJoint2D.enabled = true;
-        }
-
-        else
-        {
-            if (Launch_Type == LaunchType.Transform_Launch)
-            {
-                ballRigidbody.gravityScale = 0;
-                ballRigidbody.linearVelocity = Vector2.zero;
-            }
-            if (Launch_Type == LaunchType.Physics_Launch)
-            {
-                m_springJoint2D.connectedAnchor = grapplePoint;
-                m_springJoint2D.distance = 0;
-                m_springJoint2D.frequency = launchSpeed;
-                m_springJoint2D.enabled = true;
-            }
         }
     }
 

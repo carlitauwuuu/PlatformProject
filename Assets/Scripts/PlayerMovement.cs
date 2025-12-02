@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float playerSpeed = 2f;
+    [SerializeField] GameObject spritePlayer;
     private Rigidbody2D playerRigidbody2d;
     private Vector2 playerDirection;
     private ParticleSystem walkParticles;
@@ -36,20 +37,22 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        playerRigidbody2d.linearVelocity = new Vector2(playerDirection.x * playerSpeed, playerRigidbody2d.linearVelocityY);
+
+        playerRigidbody2d.AddForce(new Vector2(playerDirection.x, 0) * playerSpeed, ForceMode2D.Force);
+        //playerRigidbody2d.linearVelocity = new Vector2(playerDirection.x * playerSpeed, playerRigidbody2d.linearVelocityY);
         animator.SetFloat("xVel", Mathf.Abs(playerRigidbody2d.linearVelocityX));
 
         if(playerDirection.x < -0.1)
         {
-            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+            spritePlayer.transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
         }
         else if(playerDirection.x > 0.1)
         {
-            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+            spritePlayer.transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
         }
         else
         {
-            transform.localScale = transform.localScale;
+            spritePlayer.transform.localScale = transform.localScale;
         }
 
     }
@@ -66,7 +69,9 @@ public class PlayerMovement : MonoBehaviour
         {
             if (context.performed)
             {
-                playerRigidbody2d.linearVelocity = new Vector2(playerRigidbody2d.linearVelocityX, jumpForce);
+                playerRigidbody2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                
+                //playerRigidbody2d.linearVelocity = new Vector2(playerRigidbody2d.linearVelocityX, jumpForce);
                 SoundManager.Instance.PlayerSound(jumpSound);
                 animator.SetBool("isJumping", true);
             }
