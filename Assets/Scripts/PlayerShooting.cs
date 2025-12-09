@@ -9,13 +9,15 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private GameObject pointer;
 
     [Header("Player Forms (child objects)")]
-    [SerializeField] private GameObject orangeForm;
-    [SerializeField] private GameObject greenForm;
-    [SerializeField] private GameObject pinkForm;
-    [SerializeField] private GameObject yellowForm;
     [SerializeField] private GameObject playerSprite;
     [SerializeField] private Sprite[] formSprite = new Sprite[] {};
     [SerializeField] private int StartForm = 0;
+    [Header ("Colors")]
+    [SerializeField] private Color orangeForm;
+    [SerializeField] private Color greenForm;
+    [SerializeField] private Color pinkForm;
+    [SerializeField] private Color yellowForm;
+    private Color currentColor;
 
     void Start()
     {
@@ -85,22 +87,22 @@ public class PlayerShooting : MonoBehaviour
         if (formToActivate == 0)
         {
             gameObject.layer = LayerMask.NameToLayer("Orange");
-            playerSprite.GetComponent<SpriteRenderer>().sprite = formSprite[formToActivate];
+            playerSprite.GetComponent<SpriteRenderer>().color = orangeForm;
         }
         else if (formToActivate == 1)
         {
             gameObject.layer = LayerMask.NameToLayer("Green");
-            playerSprite.GetComponent<SpriteRenderer>().sprite = formSprite[formToActivate];
+            playerSprite.GetComponent<SpriteRenderer>().color = greenForm;
         }
         else if (formToActivate == 2)
         {
             gameObject.layer = LayerMask.NameToLayer("Pink");
-            playerSprite.GetComponent<SpriteRenderer>().sprite = formSprite[formToActivate];
+            playerSprite.GetComponent<SpriteRenderer>().color = pinkForm;
         }           
         else if (formToActivate == 3)       
         {
             gameObject.layer = LayerMask.NameToLayer("Yellow");
-            playerSprite.GetComponent<SpriteRenderer>().sprite = formSprite[formToActivate];
+            playerSprite.GetComponent<SpriteRenderer>().color = yellowForm;
         }
 
         Debug.Log("Player layer set to: " + LayerMask.LayerToName(gameObject.layer));

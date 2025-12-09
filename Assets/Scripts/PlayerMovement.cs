@@ -7,12 +7,17 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float playerSpeed = 2f;
     [SerializeField] GameObject spritePlayer;
+    [SerializeField] private float maxVel = 10f;
+    [SerializeField] private float pDeceleration = 30.0f;
     private Rigidbody2D playerRigidbody2d;
     private Vector2 playerDirection;
     private ParticleSystem walkParticles;
+    private float minVelocityPlayer = 0.01f;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float airDampening = 0.8f;
+    [SerializeField] private float airGravityMod = 1.2f;
 
     [Header("Grounded")]
     [SerializeField] Transform groundCheckPos;
@@ -22,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Sound")]
     [SerializeField] private AudioClip jumpSound;
     // SoundManager soundManager; 
+
+    private bool isFacingRight = true;
 
     Animator animator;
 
@@ -37,24 +44,35 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-
-        playerRigidbody2d.AddForce(new Vector2(playerDirection.x, 0) * playerSpeed, ForceMode2D.Force);
-        //playerRigidbody2d.linearVelocity = new Vector2(playerDirection.x * playerSpeed, playerRigidbody2d.linearVelocityY);
-        animator.SetFloat("xVel", Mathf.Abs(playerRigidbody2d.linearVelocityX));
-
-        if(playerDirection.x < -0.1)
+        if (Mathf.Abs(playerDirection.x) > minVelocityPlayer)
         {
-            spritePlayer.transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-        }
-        else if(playerDirection.x > 0.1)
-        {
-            spritePlayer.transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+            playerRigidbody2d.AddForce(new Vector2(playerDirection.x, 0) * playerSpeed, ForceMode2D.Force);
+            //playerRigidbody2d.linearVelocity = new Vector2(playerDirection.x * playerSpeed, playerRigidbody2d.linearVelocityY);
         }
         else
         {
-            spritePlayer.transform.localScale = transform.localScale;
+            playerRigidbody2d.linearVelocityX = Mathf.MoveTowards(playerRigidbody2d.linearVelocityX, 0.0f, pDeceleration);
         }
 
+        animator.SetFloat("xVel", Mathf.Abs(playerRigidbody2d.linearVelocityX));
+        FlipPlayer();
+
+        if (!IsGrounded())
+        {
+            playerRigidbody2d.AddForce(new Vector2(playerDirection.x, 0) * playerSpeed * airDampening, ForceMode2D.Force);
+        }
+
+        if(playerRigidbody2d.linearVelocityY < 0.0f)
+        {
+            playerRigidbody2d.gravityScale = airGravityMod;
+        }
+        else
+        {
+            playerRigidbody2d.gravityScale = 1f;
+        }
+
+
+            playerRigidbody2d.linearVelocityX = Mathf.Clamp(playerRigidbody2d.linearVelocityX, -maxVel, maxVel);
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -85,6 +103,19 @@ public class PlayerMovement : MonoBehaviour
         }
         
         return false;
+    }
+
+
+    private void FlipPlayer()
+    {
+        float localScaleX;
+        localScaleX = spritePlayer.transform.localScale.x;
+        if(isFacingRight && playerDirection.x < 0 || !isFacingRight && playerDirection.x > 0)
+        {
+            localScaleX = localScaleX * (-1);
+            spritePlayer.transform.localScale = new Vector2 (localScaleX, spritePlayer.transform.localScale.y);
+            isFacingRight = !isFacingRight;
+        }
     }
 
     private void OnDrawGizmos()

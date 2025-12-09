@@ -89,7 +89,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1052022, y: 0.10520222, z: 0.1052022}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4781105975656209235}
@@ -445,13 +445,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointer: {fileID: 6684592360041317486}
-  orangeForm: {fileID: 3955377187620914906}
-  greenForm: {fileID: 0}
-  pinkForm: {fileID: 0}
-  yellowForm: {fileID: 0}
   playerSprite: {fileID: 3955377187620914906}
   formSprite: []
   StartForm: 0
+  orangeForm: {r: 1, g: 0.5588885, b: 0, a: 0}
+  greenForm: {r: 0.1393305, g: 1, b: 0, a: 0}
+  pinkForm: {r: 1, g: 0, b: 0, a: 0}
+  yellowForm: {r: 1, g: 0.9104993, b: 0, a: 0}
 --- !u!114 &3881394763170371389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,12 +465,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 4
+  spritePlayer: {fileID: 3955377187620914906}
   jumpForce: 6
   groundCheckPos: {fileID: 3026566458301319780}
   groundCheckSize: {x: 0.63, y: 0.15}
   groundLayer:
     serializedVersion: 2
     m_Bits: 3520
+  jumpSound: {fileID: 0}
 --- !u!95 &4120869825492383596
 Animator:
   serializedVersion: 7
@@ -777,8 +779,8 @@ Transform:
   m_GameObject: {fileID: 6880760406805994238}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.42, y: 1.43, z: 0}
-  m_LocalScale: {x: 1.0452456, y: 1.0452456, z: 1.0452456}
+  m_LocalPosition: {x: -0.305, y: 0.18, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1783447044716993237}
