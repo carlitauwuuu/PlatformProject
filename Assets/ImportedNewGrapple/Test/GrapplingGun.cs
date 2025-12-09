@@ -6,7 +6,7 @@ public class GrapplingGun : MonoBehaviour
     public GrappleRope grappleRope;
     [Header("Layer Settings:")]
     [SerializeField] private bool grappleToAll = false;
-    [SerializeField] private int grappableLayerNumber = 9;
+    [SerializeField] private LayerMask grappableLayerNumber;
 
     [Header("Main Camera")]
     public Camera m_camera;
@@ -106,6 +106,8 @@ public class GrapplingGun : MonoBehaviour
                 m_springJoint2D.distance -= scroll * 2f;
                 m_springJoint2D.distance = Mathf.Clamp(m_springJoint2D.distance, 1f, maxDistance);
             }
+
+
         }
     }
 
