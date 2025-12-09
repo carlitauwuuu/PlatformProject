@@ -96,6 +96,17 @@ public class GrapplingGun : MonoBehaviour
         {
             RotateGun(m_camera.ScreenToWorldPoint(Input.mousePosition), true);
         }
+
+        if (m_springJoint2D.enabled)
+        {
+
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            if (scroll != 0f)
+            {
+                m_springJoint2D.distance -= scroll * 2f;
+                m_springJoint2D.distance = Mathf.Clamp(m_springJoint2D.distance, 1f, maxDistance);
+            }
+        }
     }
 
     void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
@@ -147,6 +158,7 @@ public class GrapplingGun : MonoBehaviour
             m_springJoint2D.connectedAnchor = grapplePoint;
             m_springJoint2D.enabled = true;
         }
+
     }
 
     private void OnDrawGizmos()

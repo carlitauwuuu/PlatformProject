@@ -69,17 +69,17 @@ public class HookController : MonoBehaviour
             }
         }
 
-        // Update line position
+        
         if (line != null && line.enabled)
         {
             line.SetPosition(1, transform.position);
             line.SetPosition(0, joint.connectedBody.transform.position);
         }
 
-        //  Adjust grapple length dynamically
+        
         if (joint.enabled)
         {
-            // Scroll wheel control
+            
             float scroll = Input.GetAxis("Mouse ScrollWheel");
             if (scroll != 0f)
             {
@@ -87,7 +87,7 @@ public class HookController : MonoBehaviour
                 joint.distance = Mathf.Clamp(joint.distance, 1f, grappleLength);
             }
 
-            // Middle mouse hold control
+            
             if (Input.GetMouseButton(2))
             {
                 joint.distance -= Time.deltaTime * 5f;

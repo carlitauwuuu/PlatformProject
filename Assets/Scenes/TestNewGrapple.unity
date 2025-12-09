@@ -183,6 +183,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player.NEWSYS
       objectReference: {fileID: 0}
+    - target: {fileID: 5959400798181198859, guid: f865b097e2e97864eb773e88aa4bd2f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8006464553624757502, guid: f865b097e2e97864eb773e88aa4bd2f6, type: 3}
       propertyPath: pinkForm.a
       value: 1
@@ -2065,7 +2069,7 @@ MonoBehaviour:
   rotationSpeed: 57.2
   maxAngle: 90
   hasMaxDistance: 1
-  maxDistance: 46.67
+  maxDistance: 4.6
   launchToPoint: 0
   Launch_Type: 1
   launchSpeed: 2.55
@@ -2392,7 +2396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!58 &1379023408
 CircleCollider2D:
   m_ObjectHideFlags: 0
