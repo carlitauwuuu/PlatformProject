@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
         {
             localScaleX = localScaleX * (-1);
             spritePlayer.transform.localScale = new Vector2 (localScaleX, spritePlayer.transform.localScale.y);
-            isFacingRight = !isFacingRight;
+            isFacingRight = !isFacingRight; 
         }
     }
 
