@@ -16,6 +16,8 @@ TagManager:
   - Fly
   - RightLimit
   - LeftLimit
+  - Die
+  - Death
   layers:
   - Default
   - TransparentFX
