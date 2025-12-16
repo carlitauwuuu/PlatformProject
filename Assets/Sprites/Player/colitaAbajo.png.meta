@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: df582e3eeaa26974a8426c51a2570605
+guid: 4b6a8352f8b7ada4092d628044ce424d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -571071538035734233
-    second: paso 1_0
+      213: -1470411653330221851
+    second: colitaAbajo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -74,7 +74,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: paso 1_0
+      name: colitaAbajo_0
       rect:
         serializedVersion: 2
-        x: 837
-        y: 777
-        width: 1347
-        height: 1213
+        x: 677
+        y: 779
+        width: 1507
+        height: 1211
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7294b0a36752318f0800000000000000
-      internalID: -571071538035734233
+      spriteID: 5e448a1546c089be0800000000000000
+      internalID: -1470411653330221851
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      paso 1_0: -571071538035734233
+      colitaAbajo_0: -1470411653330221851
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

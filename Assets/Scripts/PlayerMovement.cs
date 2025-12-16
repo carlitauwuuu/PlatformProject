@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float airDampening = 0.8f;
     [SerializeField] private float airGravityMod = 1.2f;
+    [SerializeField] private float normalGravity = 1.3f;
 
     [Header("Grounded")]
     [SerializeField] Transform groundCheckPos;
@@ -46,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        FlipPlayer();
+
         if (Mathf.Abs(playerDirection.x) > minVelocityPlayer)
         {
             playerRigidbody2d.AddForce(new Vector2(playerDirection.x, 0) * playerSpeed, ForceMode2D.Force);
@@ -57,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         animator.SetFloat("xVel", Mathf.Abs(playerRigidbody2d.linearVelocityX));
-        FlipPlayer();
 
         if (!IsGrounded())
         {
@@ -70,7 +72,16 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            playerRigidbody2d.gravityScale = 1f;
+            playerRigidbody2d.gravityScale = normalGravity;
+        }
+
+        if (IsGrounded())
+        {
+            animator.SetBool("isJumping", false);
+        }
+        else
+        {
+            animator.SetBool("isJumping", true);
         }
 
 
@@ -92,8 +103,8 @@ public class PlayerMovement : MonoBehaviour
                 playerRigidbody2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 
                 //playerRigidbody2d.linearVelocity = new Vector2(playerRigidbody2d.linearVelocityX, jumpForce);
-                SoundManager.Instance.PlayerSound(jumpSound);
-                animator.SetBool("isJumping", true);
+                //SoundManager.Instance.PlayerSound(jumpSound);
+                
             }
         }     
     }
