@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Sound")]
     [SerializeField] private AudioClip jumpSound;
+
+ 
     // SoundManager soundManager; 
 
     private bool isFacingRight = true;
@@ -127,5 +129,13 @@ public class PlayerMovement : MonoBehaviour
     public void EmitWalkParticles()
     {
         walkParticles.Emit(1);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Death"))
+        {
+            Gamemanager.instance.RestartGame();
+        }
     }
 }

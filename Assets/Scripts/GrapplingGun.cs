@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class GrapplingGun : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class GrapplingGun : MonoBehaviour
     [Range(0, 80)] [SerializeField] private float rotationSpeed = 4;
     [SerializeField] float maxAngle = 90f;
     private bool isGrappling = false;
+    private Vector2 vertical = Vector2.down;
+    private float currAngle;
 
     [Header("Distance:")]
     [SerializeField] private bool hasMaxDistance = true;
@@ -90,7 +93,45 @@ public class GrapplingGun : MonoBehaviour
 
         
     }
+    private void FixedUpdate()
+    {
+        // Seguridad absoluta: solo actúa cuando el gancho está activo
+        if (!m_springJoint2D.enabled) return;
 
+        Vector2 anchor = m_springJoint2D.connectedAnchor;
+        Vector2 toPlayer = playerRB.position - anchor;
+
+        float distance = toPlayer.magnitude;
+        if (distance < 0.001f) return;
+
+        Vector2 dir = toPlayer / distance;
+        Vector2 vertical = Vector2.down;
+
+        float angle = Vector2.SignedAngle(vertical, dir);
+
+        if (Mathf.Abs(angle) > maxAngle)
+        {
+            float clampedAngle = Mathf.Clamp(angle, -maxAngle, maxAngle);
+
+            // Vector matemático, NO rotación del player
+            Vector2 clampedDir =
+                Quaternion.Euler(0, 0, clampedAngle) * vertical;
+
+            // Recolocación limpia en el arco permitido
+            playerRB.MovePosition(anchor + clampedDir * distance);
+
+            // Limpieza de velocidad solo fuera del arco
+            Vector2 tangent = Vector2.Perpendicular(clampedDir);
+
+            if (tangent.sqrMagnitude > 0.0001f)
+            {
+                playerRB.linearVelocity =
+                    Vector2.Dot(playerRB.linearVelocity, tangent)
+                    / tangent.sqrMagnitude
+                    * tangent;
+            }
+        }
+    }
     private void Update()
     {
         Mouse_FirePoint_DistanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
@@ -129,6 +170,8 @@ public class GrapplingGun : MonoBehaviour
         {
             RotateGun(m_camera.ScreenToWorldPoint(Input.mousePosition), true);
         }
+
+
 
         if (m_springJoint2D.enabled)
         {
@@ -186,6 +229,7 @@ public class GrapplingGun : MonoBehaviour
                 pointer.transform.position = cursorPosition;
             }
         }
+
 
     }
 
@@ -246,16 +290,16 @@ private void ActivateForm(int formToActivate)
         hasMaxDistance ? maxDistance : Mathf.Infinity
     );
 
-    if (!hit) return;
+        if (!hit) return;
 
-    // Only grapple to objects on the SAME layer as the player
-    if (hit.collider.gameObject.layer != gameObject.layer)
+        // Only grapple to objects on the SAME layer as the player
+        if (hit.collider.gameObject.layer != gameObject.layer)
         return;
 
-    isGrappling = true;
-    grapplePoint = hit.point;
-    DistanceVector = grapplePoint - (Vector2)gunPivot.position;
-    grappleRope.enabled = true;
+        isGrappling = true;
+        grapplePoint = hit.point;
+        DistanceVector = grapplePoint - (Vector2)gunPivot.position;
+        grappleRope.enabled = true;
     }
 
     public void Grapple()
