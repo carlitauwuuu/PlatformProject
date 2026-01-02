@@ -2,6 +2,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
+//tom hanks 2 Ahora es personal
 public class GrapplingGun : MonoBehaviour
 {
     [Header("Scripts:")]
@@ -20,7 +21,7 @@ public class GrapplingGun : MonoBehaviour
 
     [Header("Rotation:")]
     [SerializeField] private bool rotateOverTime = true;
-    [Range(0, 80)] [SerializeField] private float rotationSpeed = 4;
+    [Range(0, 80)][SerializeField] private float rotationSpeed = 4;
     [SerializeField] float maxAngle = 90f;
     private bool isGrappling = false;
     private Vector2 vertical = Vector2.down;
@@ -33,7 +34,7 @@ public class GrapplingGun : MonoBehaviour
     [Header("Launching")]
     [SerializeField] private bool launchToPoint = true;
     [SerializeField] private LaunchType Launch_Type = LaunchType.Transform_Launch;
-    [Range(0, 5)] [SerializeField] private float launchSpeed = 5;
+    [Range(0, 5)][SerializeField] private float launchSpeed = 5;
 
     [Header("No Launch To Point")]
     [SerializeField] private bool autoCongifureDistance = false;
@@ -41,24 +42,23 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private float targetFrequency = 3;
 
 
-[Header("PlayerShooting Change color ")]
+    [Header("PlayerShooting Change color ")]
 
-     private Camera mainCamera;
+    private Camera mainCamera;
     private Vector3 cursorPosition;
 
     [SerializeField] private GameObject pointer;
-
+    [SerializeField] private GameObject maxDistancePointer; // New max-distance pointer
     [Header("Player Forms (child objects)")]
     [SerializeField] private GameObject playerSprite;
-    [SerializeField] private Sprite[] formSprite = new Sprite[] {};
+    [SerializeField] private Sprite[] formSprite = new Sprite[] { };
     [SerializeField] private int StartForm = 0;
-    [Header ("Colors")]
+    [Header("Colors")]
     [SerializeField] private Color orangeForm;
     [SerializeField] private Color greenForm;
     [SerializeField] private Color pinkForm;
     [SerializeField] private Color yellowForm;
     private Color currentColor;
-
 
     private enum LaunchType
     {
@@ -75,7 +75,6 @@ public class GrapplingGun : MonoBehaviour
 
     public Rigidbody2D playerRB;
 
-
     private void Start()
     {
         grappleRope.enabled = false;
@@ -84,18 +83,18 @@ public class GrapplingGun : MonoBehaviour
         if (pointer == null)
             pointer = GameObject.Find("Pointer");
 
+        if (maxDistancePointer == null)
+            maxDistancePointer = GameObject.Find("MaxDistancePointer");
+
         mainCamera = Camera.main;
 
         //orange default
-       
-        ActivateForm(StartForm);    
-
-
-        
+        ActivateForm(StartForm);
     }
+
     private void FixedUpdate()
     {
-        // Seguridad absoluta: solo actúa cuando el gancho está activo
+        // Safety check: only act when the grappling hook is active
         if (!m_springJoint2D.enabled) return;
 
         Vector2 anchor = m_springJoint2D.connectedAnchor;
@@ -132,6 +131,7 @@ public class GrapplingGun : MonoBehaviour
             }
         }
     }
+
     private void Update()
     {
         Mouse_FirePoint_DistanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
@@ -158,7 +158,6 @@ public class GrapplingGun : MonoBehaviour
                     gunHolder.position = Vector3.Lerp(gunHolder.position, grapplePoint, Time.deltaTime * launchSpeed);
                 }
             }
-
         }
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
@@ -171,19 +170,17 @@ public class GrapplingGun : MonoBehaviour
             RotateGun(m_camera.ScreenToWorldPoint(Input.mousePosition), true);
         }
 
-
+        // Handle max-distance pointer logic
+        UpdateMaxDistancePointer();
 
         if (m_springJoint2D.enabled)
         {
-
             float scroll = Input.GetAxis("Mouse ScrollWheel");
             if (scroll != 0f)
             {
                 m_springJoint2D.distance -= scroll * 2f;
                 m_springJoint2D.distance = Mathf.Clamp(m_springJoint2D.distance, 1f, maxDistance);
             }
-
-
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -229,42 +226,85 @@ public class GrapplingGun : MonoBehaviour
                 pointer.transform.position = cursorPosition;
             }
         }
-
-
     }
 
-private void ActivateForm(int formToActivate)
+    // Method to update the max distance pointer position
+    private void UpdateMaxDistancePointer()
     {
+        Vector3 mousePosition = m_camera.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0; // Ensure it's 2D
 
-      
+        // Get the distance from the player to the mouse
+        Vector3 playerPosition = transform.position;
+        float distanceToMouse = Vector3.Distance(playerPosition, mousePosition);
+
+        // Clamp the max-distance pointer based on the maxDistance
+        if (distanceToMouse > maxDistance)
+        {
+            Vector3 direction = (mousePosition - playerPosition).normalized;
+            maxDistancePointer.transform.position = playerPosition + direction * maxDistance;
+        }
+        else
+        {
+            maxDistancePointer.transform.position = mousePosition;
+        }
+
+        // Optional: Change the color of the max-distance pointer if it's clamped
+        maxDistancePointer.GetComponent<SpriteRenderer>().color = (distanceToMouse > maxDistance) ? Color.red : Color.white;
+    }
+
+    private void ActivateForm(int formToActivate)
+    {
+        GameObject playerObject = transform.root.gameObject;
+
         if (formToActivate == 0)
         {
-            gameObject.layer = LayerMask.NameToLayer("Orange");
+            SetLayer(playerObject, LayerMask.NameToLayer("Orange"));
             playerSprite.GetComponent<SpriteRenderer>().color = orangeForm;
         }
         else if (formToActivate == 1)
         {
-            gameObject.layer = LayerMask.NameToLayer("Green");
+            SetLayer(playerObject, LayerMask.NameToLayer("Green"));
             playerSprite.GetComponent<SpriteRenderer>().color = greenForm;
         }
         else if (formToActivate == 2)
         {
-            gameObject.layer = LayerMask.NameToLayer("Pink");
+            SetLayer(playerObject, LayerMask.NameToLayer("Pink"));
             playerSprite.GetComponent<SpriteRenderer>().color = pinkForm;
-        }           
-        else if (formToActivate == 3)       
+        }
+        else if (formToActivate == 3)
         {
-            gameObject.layer = LayerMask.NameToLayer("Yellow");
+            SetLayer(playerObject, LayerMask.NameToLayer("Yellow"));
             playerSprite.GetComponent<SpriteRenderer>().color = yellowForm;
         }
 
-        Debug.Log("Player layer set to: " + LayerMask.LayerToName(gameObject.layer));
+        Debug.Log("Player layer set to: " + LayerMask.LayerToName(playerObject.layer));
     }
-        private IEnumerator TemporarilyDisable(GameObject circle)
+
+    // Set layer to all children of the player object
+    private void SetLayer(GameObject obj, int newLayer)
+    {
+        obj.layer = newLayer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayer(child.gameObject, newLayer);
+        }
+    }
+
+    private void SetLayerTodo(GameObject obj, int newLayer)
+    {
+        obj.layer = newLayer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerTodo(child.gameObject, newLayer);
+        }
+    }
+
+    private IEnumerator TemporarilyDisable(GameObject circle)
     {
         circle.SetActive(false);
-        yield return null;  
-        Destroy(circle);    
+        yield return null;
+        Destroy(circle);
     }
 
     void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
@@ -279,7 +319,6 @@ private void ActivateForm(int formToActivate)
         }
         else
             gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
     }
 
     void SetGrapplePoint()
@@ -293,8 +332,8 @@ private void ActivateForm(int formToActivate)
         if (!hit) return;
 
         // Only grapple to objects on the SAME layer as the player
-        if (hit.collider.gameObject.layer != gameObject.layer)
-        return;
+        if (hit.collider.gameObject.layer != gameObject.layer || hit.collider.CompareTag("Player"))
+            return;
 
         isGrappling = true;
         grapplePoint = hit.point;
@@ -304,7 +343,6 @@ private void ActivateForm(int formToActivate)
 
     public void Grapple()
     {
-
         if (!launchToPoint && !autoCongifureDistance)
         {
             m_springJoint2D.distance = targetDistance;
@@ -321,7 +359,6 @@ private void ActivateForm(int formToActivate)
             m_springJoint2D.connectedAnchor = grapplePoint;
             m_springJoint2D.enabled = true;
         }
-
     }
 
     private void OnDrawGizmos()
@@ -332,5 +369,4 @@ private void ActivateForm(int formToActivate)
             Gizmos.DrawWireSphere(firePoint.position, maxDistance);
         }
     }
-
 }
