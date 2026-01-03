@@ -2,35 +2,39 @@ using UnityEngine;
 
 public class FruitMovement : MonoBehaviour
 {
-  
+    public float speed = 3f;
+    private int direction = 1;
+    private SpriteRenderer sr;
 
-        public float speed = 3f;   // Velocidad del movimiento
-        private int direction = 1; // 1 = derecha, -1 = izquierda
-        private SpriteRenderer sr;
+    // >>> CHANGE
+    private Rigidbody2D rb;
+
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+
+        // >>> CHANGE
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-        {
-            transform.Translate(Vector2.right * direction * speed * Time.deltaTime);
-        }
+    // >>> CHANGE: move in FixedUpdate, NOT Update
+    void FixedUpdate()
+    {
+        rb.MovePosition(
+            rb.position + Vector2.right * direction * speed * Time.fixedDeltaTime
+        );
+    }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("RightLimit"))
         {
-            if (collision.CompareTag("RightLimit"))
-            {
             Debug.Log("hay coliisom");
-                direction = -1;
-            }
-       
-            else if (collision.CompareTag("LeftLimit"))
-            {
-                direction = 1;
-            }
-       
-                
+            direction = -1;
         }
-    
+        else if (collision.CompareTag("LeftLimit"))
+        {
+            direction = 1;
+        }
+    }
 }
