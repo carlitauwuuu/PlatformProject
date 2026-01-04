@@ -194,7 +194,7 @@ public class GrapplingGun : MonoBehaviour
                 pointer.transform.position = hit.point;
 
                 float distance = Vector3.Distance(transform.position, hit.collider.transform.position);
-                if (distance > 3f)
+                if (distance > maxDistance)
                 {
                     Debug.Log("muy lejos.");
                     return;

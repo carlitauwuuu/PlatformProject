@@ -1,40 +1,52 @@
 using UnityEngine;
 
-public class FruitMovement : MonoBehaviour
+public class MovingPlatform : MonoBehaviour
 {
-    public float speed = 3f;
-    private int direction = 1;
-    private SpriteRenderer sr;
-
-    // >>> CHANGE
+    public float speed = 2f;
+    private Vector2 direction = Vector2.right;
     private Rigidbody2D rb;
+    private Vector2 previousPosition;
 
-    private void Start()
+    private void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
-
-        // >>> CHANGE
         rb = GetComponent<Rigidbody2D>();
+        previousPosition = rb.position;
     }
 
-    // >>> CHANGE: move in FixedUpdate, NOT Update
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        rb.MovePosition(
-            rb.position + Vector2.right * direction * speed * Time.fixedDeltaTime
-        );
+        // Move the platform
+        Vector2 newPos = rb.position + direction * speed * Time.fixedDeltaTime;
+        rb.MovePosition(newPos);
+
+        // Store delta movement
+        Vector2 delta = newPos - previousPosition;
+
+        previousPosition = newPos;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.CompareTag("RightLimit"))
+        if (other.gameObject.layer != LayerMask.NameToLayer("PlatformLimits"))
+            return;
+
+        if (other.CompareTag("RightLimit"))
+            direction = Vector2.left;
+        else if (other.CompareTag("LeftLimit"))
+            direction = Vector2.right;
+    }
+
+    // Player carry logic
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("hay coliisom");
-            direction = -1;
-        }
-        else if (collision.CompareTag("LeftLimit"))
-        {
-            direction = 1;
+            Rigidbody2D playerRb = other.attachedRigidbody;
+            if (playerRb != null)
+            {
+                // Add horizontal delta to player without touching vertical velocity
+                playerRb.position += new Vector2((rb.position - previousPosition).x, 0f);
+            }
         }
     }
 }
