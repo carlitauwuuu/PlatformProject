@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4900936878258950645}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GunPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3026566458301319780}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1783447044716993237}
   - component: {fileID: 355115719605662249}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Form
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7456746295676905395}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,7 +443,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &3881394763170371389
 MonoBehaviour:
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7291cedbe1307c40b72fbc5f2741c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 17.3
+  playerSpeed: 18.5
   spritePlayer: {fileID: 3955377187620914906}
   maxVel: 8
   pDeceleration: 11.2
@@ -525,7 +525,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: -11.27, y: 0.62}
   m_AutoConfigureDistance: 1
-  m_Distance: 21.948689
+  m_Distance: 20.944098
   m_DampingRatio: 1
   m_Frequency: 20
 --- !u!1 &6293688396142857142
@@ -680,7 +680,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2740589430885669627}
   - component: {fileID: 1732237222563509357}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -861,7 +861,7 @@ GameObject:
   - component: {fileID: 5261201872844949718}
   - component: {fileID: 6452923165308440779}
   - component: {fileID: 5915004536601259621}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GrapplingGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -964,10 +964,10 @@ MonoBehaviour:
   gunPivot: {fileID: 4900936878258950645}
   firePoint: {fileID: 7456746295676905395}
   rotateOverTime: 0
-  rotationSpeed: 57.2
+  rotationSpeed: 65
   maxAngle: 90
   hasMaxDistance: 1
-  maxDistance: 3.6
+  maxDistance: 3.98
   launchToPoint: 0
   Launch_Type: 1
   launchSpeed: 2.55
@@ -975,6 +975,7 @@ MonoBehaviour:
   targetDistance: 3
   targetFrequency: 1
   pointer: {fileID: 6684592360041317486}
+  maxDistancePointer: {fileID: 0}
   playerSprite: {fileID: 6880760406805994238}
   formSprite: []
   StartForm: 0
@@ -997,7 +998,7 @@ GameObject:
   - component: {fileID: 8452983309023937325}
   - component: {fileID: 375907960685947471}
   - component: {fileID: 9048664714575937769}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Rope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1034,7 +1035,7 @@ MonoBehaviour:
   grapplingGun: {fileID: 5915004536601259621}
   m_lineRenderer: {fileID: 9048664714575937769}
   percision: 120
-  straightenLineSpeed: 11.5
+  straightenLineSpeed: 19.1
   ropeAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -1129,7 +1130,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ropeLaunchSpeedMultiplayer: 35.3
+  ropeLaunchSpeedMultiplayer: 41.9
   isGrappling: 0
 --- !u!120 &9048664714575937769
 LineRenderer:
