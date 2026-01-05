@@ -80,6 +80,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ProtoNiveles/New Levels/LevelPrueba 4.unity
     guid: b516a813505b7d5408a8ad4839a0a365
+  - enabled: 1
+    path: Assets/Scenes/ProtoNiveles/New Levels/LevelPrueba 5.unity
+    guid: e0b287ff1660355429c5b3f0a180a2b4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
