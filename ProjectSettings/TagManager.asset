@@ -18,6 +18,7 @@ TagManager:
   - LeftLimit
   - Die
   - Death
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
