@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerDeath : Gamemanager
+public class PlayerDeath : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Death"))
         {
-            RestartGame();
+            Gamemanager.instance.RestartGame();
         }
     }
 }

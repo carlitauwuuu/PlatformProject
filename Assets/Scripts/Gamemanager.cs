@@ -11,7 +11,6 @@ public class Gamemanager : MonoBehaviour
         {
             instance = this;
         }
-
         else
         {
             Debug.LogError("Mas de un Game Manager en escena!");

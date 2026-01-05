@@ -32,9 +32,12 @@ public class PlayerMovement : MonoBehaviour
     // SoundManager soundManager; 
 
     private bool isFacingRight = true;
-
+    PlatformMovement platformMovement;
     Animator animator;
 
+    //para mover fruta
+    [Header("Fruta mueve")]
+    [SerializeField] GrapplingGun grapplingGun;
 
     void Start()
     {
@@ -86,6 +89,14 @@ public class PlayerMovement : MonoBehaviour
 
 
             playerRigidbody2d.linearVelocityX = Mathf.Clamp(playerRigidbody2d.linearVelocityX, -maxVel, maxVel);
+        if (grapplingGun.fruitMovement != null)
+        {
+            playerRigidbody2d.position += grapplingGun.fruitMovement.delta;
+        }
+        else if (platformMovement != null)
+        {
+            playerRigidbody2d.position += platformMovement.delta;
+        }
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -148,5 +159,27 @@ public class PlayerMovement : MonoBehaviour
         {
             Gamemanager.instance.RestartGame();
         }
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            gameObject.transform.parent = collision.gameObject.transform;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            gameObject.transform.parent = null;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+            platformMovement = collision.gameObject.GetComponent<PlatformMovement>();
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+            platformMovement = null;
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FruitMovement : MonoBehaviour
+public class PlatformMovement : MonoBehaviour
 {
     public float speed = 2f;
     private Vector2 direction = Vector2.right;
@@ -20,19 +20,19 @@ public class FruitMovement : MonoBehaviour
         rb.MovePosition(newPos);
 
         // Store delta movement
-         delta = newPos - previousPosition;
+        delta = newPos - previousPosition;
 
         previousPosition = newPos;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
+
         if (other.CompareTag("RightLimit"))
             direction = Vector2.left;
         else if (other.CompareTag("LeftLimit"))
             direction = Vector2.right;
-        
+
 
     }
 

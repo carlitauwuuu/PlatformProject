@@ -19,6 +19,7 @@ TagManager:
   - Die
   - Death
   - Checkpoint
+  - Platform
   layers:
   - Default
   - TransparentFX

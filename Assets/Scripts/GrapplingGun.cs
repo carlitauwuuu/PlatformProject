@@ -75,6 +75,9 @@ public class GrapplingGun : MonoBehaviour
 
     public Rigidbody2D playerRB;
 
+
+    public FruitMovement fruitMovement { get; private set; }
+
     private void Start()
     {
         grappleRope.enabled = false;
@@ -130,6 +133,7 @@ public class GrapplingGun : MonoBehaviour
                     * tangent;
             }
         }
+        m_springJoint2D.connectedAnchor = fruitMovement.transform.position;
     }
 
     private void Update()
@@ -164,13 +168,14 @@ public class GrapplingGun : MonoBehaviour
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
             isGrappling = false;
+            fruitMovement = null;
         }
         else
         {
             RotateGun(m_camera.ScreenToWorldPoint(Input.mousePosition), true);
         }
 
-        // Handle max-distance pointer logic
+        //POINTER DE MAX DISTANCE
         UpdateMaxDistancePointer();
 
         if (m_springJoint2D.enabled)
@@ -200,6 +205,11 @@ public class GrapplingGun : MonoBehaviour
                     return;
                 }
 
+                if (hit.collider.gameObject.CompareTag("FruitAttacheable"))
+                {
+
+                }
+
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Orange") && hit.collider.CompareTag("Fly"))
                 {
                     ActivateForm(0);
@@ -226,19 +236,20 @@ public class GrapplingGun : MonoBehaviour
                 pointer.transform.position = cursorPosition;
             }
         }
+
     }
 
-    // Method to update the max distance pointer position
+    //AQUI UPDATEA EL CROSSHAIR DE MAX DISTANCE
     private void UpdateMaxDistancePointer()
     {
         Vector3 mousePosition = m_camera.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0; // Ensure it's 2D
 
-        // Get the distance from the player to the mouse
+        //DISTANCIA ENTRE EL PLAYER Y EL MAUSE
         Vector3 playerPosition = transform.position;
         float distanceToMouse = Vector3.Distance(playerPosition, mousePosition);
 
-        // Clamp the max-distance pointer based on the maxDistance
+        //CLAMPEA EL POINTER BASANDOSE EN LA DISTANCIA MAXIMA
         if (distanceToMouse > maxDistance)
         {
             Vector3 direction = (mousePosition - playerPosition).normalized;
@@ -249,7 +260,7 @@ public class GrapplingGun : MonoBehaviour
             maxDistancePointer.transform.position = mousePosition;
         }
 
-        // Optional: Change the color of the max-distance pointer if it's clamped
+        //si la distancia es menor cambia el color, va a veces
         maxDistancePointer.GetComponent<SpriteRenderer>().color = (distanceToMouse > maxDistance) ? Color.red : Color.white;
     }
 
@@ -281,7 +292,7 @@ public class GrapplingGun : MonoBehaviour
         Debug.Log("Player layer set to: " + LayerMask.LayerToName(playerObject.layer));
     }
 
-    // Set layer to all children of the player object
+    //cambiar layer a todos los hijos el playernewsys
     private void SetLayer(GameObject obj, int newLayer)
     {
         obj.layer = newLayer;
@@ -327,13 +338,16 @@ public class GrapplingGun : MonoBehaviour
         firePoint.position,
         Mouse_FirePoint_DistanceVector.normalized,
         hasMaxDistance ? maxDistance : Mathf.Infinity
-    );
+        );
 
         if (!hit) return;
 
         // Only grapple to objects on the SAME layer as the player
         if (hit.collider.gameObject.layer != gameObject.layer || hit.collider.CompareTag("Player"))
             return;
+
+        if (hit.collider.gameObject.CompareTag("FruitAttacheable"))
+            fruitMovement = hit.collider.gameObject.GetComponent<FruitMovement>();
 
         isGrappling = true;
         grapplePoint = hit.point;
