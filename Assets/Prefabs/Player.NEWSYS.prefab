@@ -471,6 +471,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3520
   jumpSound: {fileID: 0}
+  grapplingGun: {fileID: 0}
 --- !u!95 &4120869825492383596
 Animator:
   serializedVersion: 7
@@ -525,7 +526,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: -11.27, y: 0.62}
   m_AutoConfigureDistance: 1
-  m_Distance: 20.944098
+  m_Distance: 21.652882
   m_DampingRatio: 1
   m_Frequency: 20
 --- !u!1 &6293688396142857142
