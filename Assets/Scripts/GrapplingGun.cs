@@ -51,6 +51,7 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private GameObject maxDistancePointer; // New max-distance pointer
     [Header("Player Forms (child objects)")]
     [SerializeField] private GameObject playerSprite;
+    [SerializeField] private GameObject head;
     [SerializeField] private Sprite[] formSprite = new Sprite[] { };
     [SerializeField] private int StartForm = 0;
     [Header("Colors")]
@@ -59,7 +60,7 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private Color pinkForm;
     [SerializeField] private Color yellowForm;
     private Color currentColor;
-
+    [HideInInspector] public GameObject grabbedFly;
     private enum LaunchType
     {
         Transform_Launch,
@@ -75,7 +76,7 @@ public class GrapplingGun : MonoBehaviour
 
     public Rigidbody2D playerRB;
 
-    private Transform grappleTarget;
+    [HideInInspector] public Transform grappleTarget;
     private Vector2 grappleLocalOffset;
     private float desiredDistance;
 
@@ -100,7 +101,7 @@ public class GrapplingGun : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (grappleTarget != null)
+        if (grappleTarget != null && grabbedFly == null)
         {
             grapplePoint = (Vector2)grappleTarget.position + grappleLocalOffset;
 
@@ -175,6 +176,7 @@ public class GrapplingGun : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             grappleRope.enabled = false;
+            grabbedFly = null;
             m_springJoint2D.enabled = false;
             isGrappling = false;
             fruitMovement = null;
@@ -199,6 +201,36 @@ public class GrapplingGun : MonoBehaviour
             }
         }
 
+        if (grabbedFly != null)
+        {
+            Vector3 targetPos = gunPivot.position;
+            float speed = 10f;
+
+            grabbedFly.transform.position = Vector3.MoveTowards(
+                grabbedFly.transform.position,
+                targetPos,
+                speed * Time.deltaTime
+            );
+
+            if (Vector3.Distance(grabbedFly.transform.position, targetPos) < 0.3f)
+            {
+                int layer = grabbedFly.layer;
+
+                if (layer == LayerMask.NameToLayer("Orange"))
+                    ActivateForm(0);
+                else if (layer == LayerMask.NameToLayer("Green"))
+                    ActivateForm(1);
+                else if (layer == LayerMask.NameToLayer("Pink"))
+                    ActivateForm(2);
+                else if (layer == LayerMask.NameToLayer("Yellow"))
+                    ActivateForm(3);
+
+                Destroy(grabbedFly);
+                grabbedFly = null;
+                grappleTarget = null;
+            }
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             cursorPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -216,12 +248,7 @@ public class GrapplingGun : MonoBehaviour
                     return;
                 }
 
-                if (hit.collider.gameObject.CompareTag("FruitAttacheable"))
-                {
-
-                }
-
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Orange") && hit.collider.CompareTag("Fly"))
+                /*if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Orange") && hit.collider.CompareTag("Fly"))
                 {
                     ActivateForm(0);
                     StartCoroutine(TemporarilyDisable(hit.collider.gameObject));
@@ -240,7 +267,7 @@ public class GrapplingGun : MonoBehaviour
                 {
                     ActivateForm(3);
                     StartCoroutine(TemporarilyDisable(hit.collider.gameObject));
-                }
+                }*/
             }
             else
             {
@@ -278,21 +305,25 @@ public class GrapplingGun : MonoBehaviour
         {
             SetLayer(playerObject, LayerMask.NameToLayer("Orange"));
             playerSprite.GetComponent<SpriteRenderer>().color = orangeForm;
+            head.GetComponent<SpriteRenderer>().color = orangeForm;
         }
         else if (formToActivate == 1)
         {
             SetLayer(playerObject, LayerMask.NameToLayer("Green"));
             playerSprite.GetComponent<SpriteRenderer>().color = greenForm;
+            head.GetComponent<SpriteRenderer>().color = greenForm;
         }
         else if (formToActivate == 2)
         {
             SetLayer(playerObject, LayerMask.NameToLayer("Pink"));
             playerSprite.GetComponent<SpriteRenderer>().color = pinkForm;
+            head.GetComponent<SpriteRenderer>().color = pinkForm;
         }
         else if (formToActivate == 3)
         {
             SetLayer(playerObject, LayerMask.NameToLayer("Yellow"));
             playerSprite.GetComponent<SpriteRenderer>().color = yellowForm;
+            head.GetComponent<SpriteRenderer>().color = yellowForm;
         }
 
         Debug.Log("Player layer set to: " + LayerMask.LayerToName(playerObject.layer));
@@ -317,18 +348,12 @@ public class GrapplingGun : MonoBehaviour
         }
     }
 
-    private IEnumerator TemporarilyDisable(GameObject circle)
-    {
-        circle.SetActive(false);
-        yield return null;
-        Destroy(circle);
-    }
-
     void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
     {
         Vector3 distanceVector = lookPoint - gunPivot.position;
 
         float angle = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
+        Mathf.Clamp(angle , -1, 1);
         if (rotateOverTime && allowRotationOverTime)
         {
             Quaternion startRotation = gunPivot.rotation;
@@ -340,37 +365,57 @@ public class GrapplingGun : MonoBehaviour
 
     void SetGrapplePoint()
     {
-        RaycastHit2D hit = Physics2D.Raycast(
-        firePoint.position,
-        Mouse_FirePoint_DistanceVector.normalized,
-        hasMaxDistance ? maxDistance : Mathf.Infinity
-        );
+        Vector2 direction = Mouse_FirePoint_DistanceVector.normalized;
+        float distance = hasMaxDistance ? Mathf.Min(Mouse_FirePoint_DistanceVector.magnitude, maxDistance) : Mouse_FirePoint_DistanceVector.magnitude;
 
-        if (!hit) return;
+        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, direction, distance);
 
-        if (hit.collider.gameObject.layer != gameObject.layer || hit.collider.CompareTag("Player"))
-            return;
+        fruitMovement = null;
+        grappleTarget = null;
+        grabbedFly = null;
 
-        if (hit.collider.gameObject.CompareTag("FruitAttacheable"))
+
+        if (hit.collider != null)
         {
-            fruitMovement = hit.collider.gameObject.GetComponent<FruitMovement>();
-            grappleTarget = hit.collider.transform;
+            grapplePoint = hit.point;
 
-            grappleLocalOffset = hit.point - (Vector2)grappleTarget.position;
+            if (hit.collider.CompareTag("FruitAttacheable") && hit.collider.gameObject.layer == gameObject.layer)
+            {
+                fruitMovement = hit.collider.GetComponent<FruitMovement>();
+                grappleTarget = hit.collider.transform;
+                grappleLocalOffset = hit.point - (Vector2)grappleTarget.position;
+            }
+            else if (hit.collider.CompareTag("Fly"))
+            {
+                grabbedFly = hit.collider.gameObject;
+                grappleTarget = null;
+                m_springJoint2D.enabled = false;
+
+                grapplePoint = hit.point;
+            }
+            else if (hit.collider.gameObject.layer != gameObject.layer || hit.collider.CompareTag("Player"))
+            {
+                return;
+            }
         }
         else
         {
-            grappleTarget = null;
+
+            grapplePoint = (Vector2)firePoint.position + direction * distance;
         }
 
+
         isGrappling = true;
-        grapplePoint = hit.point;
         DistanceVector = grapplePoint - (Vector2)gunPivot.position;
         grappleRope.enabled = true;
     }
 
+
     public void Grapple()
     {
+        if (grappleTarget == null)
+            return;
+
         float actualDistance = Vector2.Distance(playerRB.position, grapplePoint);
 
         if (!launchToPoint && !autoCongifureDistance)
@@ -386,9 +431,9 @@ public class GrapplingGun : MonoBehaviour
                 m_springJoint2D.autoConfigureDistance = true;
                 m_springJoint2D.frequency = 0;
             }
+
             m_springJoint2D.connectedAnchor = grapplePoint;
             m_springJoint2D.enabled = true;
-
             desiredDistance = actualDistance;
         }
     }
