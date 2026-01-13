@@ -617,7 +617,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 114.89604, y: -18.255316}
   m_AutoConfigureDistance: 1
-  m_Distance: 147.48863
+  m_Distance: 153.10008
   m_DampingRatio: 1
   m_Frequency: 20
 --- !u!1 &6293688396142857142
@@ -1069,6 +1069,7 @@ MonoBehaviour:
   pointer: {fileID: 6684592360041317486}
   maxDistancePointer: {fileID: 0}
   playerSprite: {fileID: 6880760406805994238}
+  head: {fileID: 7577377435714962022}
   formSprite: []
   StartForm: 0
   orangeForm: {r: 0.9490197, g: 0.38431376, b: 0, a: 1}
