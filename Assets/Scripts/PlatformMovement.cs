@@ -6,6 +6,7 @@ public class PlatformMovement : MonoBehaviour
     private Vector2 direction = Vector2.right;
     private Rigidbody2D rb;
     private Vector2 previousPosition;
+    public bool hasMoved = false;
     public Vector2 delta { get; private set; }
     private void Awake()
     {
@@ -15,18 +16,29 @@ public class PlatformMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Move the platform
-        Vector2 newPos = rb.position + direction * speed * Time.fixedDeltaTime;
-        rb.MovePosition(newPos);
+        if (hasMoved)
+        {
+            // Move the platform
+            Vector2 newPos = rb.position + direction * speed * Time.fixedDeltaTime;
+            rb.MovePosition(newPos);
 
-        // Store delta movement
-        delta = newPos - previousPosition;
+            // Store delta movement
+            delta = newPos - previousPosition;
 
-        previousPosition = newPos;
+            previousPosition = newPos;
+        }
+
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Colision con player");
+            hasMoved = true;
+        }
 
         if (other.CompareTag("RightLimit"))
             direction = Vector2.left;
@@ -35,5 +47,13 @@ public class PlatformMovement : MonoBehaviour
 
 
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            
+            hasMoved = true;
+        }
 
+    }
 }
