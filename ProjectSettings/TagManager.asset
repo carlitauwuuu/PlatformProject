@@ -54,8 +54,8 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
+  - name: detras
+    uniqueID: 1469099687
     locked: 0
   - name: bg6
     uniqueID: 273425611
@@ -75,8 +75,17 @@ TagManager:
   - name: bg1
     uniqueID: 1677762439
     locked: 0
+  - name: bg0
+    uniqueID: 2476568435
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: player
     uniqueID: 4095850165
+    locked: 0
+  - name: delante
+    uniqueID: 4147639571
     locked: 0
   m_RenderingLayers:
   - Default
