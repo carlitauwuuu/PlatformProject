@@ -4,6 +4,8 @@ public class buttondispenser : MonoBehaviour
 {
     public GameObject Box;
     public Transform spawn;
+    [SerializeField] private Sprite BoxPushed;
+
    
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -11,13 +13,14 @@ public class buttondispenser : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Spawnitem();
-            gameObject.SetActive(false);
+            GetComponent<SpriteRenderer> ().sprite = BoxPushed;
         }
         
     }
     void Spawnitem()
     {
         Instantiate(Box, spawn.position, Quaternion.identity);
+
     }
 }
 

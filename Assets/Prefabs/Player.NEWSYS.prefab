@@ -562,6 +562,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3520
   jumpSound: {fileID: 0}
+  isFacingRight: 1
   grapplingGun: {fileID: 5915004536601259621}
 --- !u!95 &4120869825492383596
 Animator:
@@ -1254,7 +1255,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b705a8975cc0a03409d6515461cd05d5, type: 2}
+  - {fileID: 2100000, guid: 43640a28389a46e4db83dfa3d387cb14, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

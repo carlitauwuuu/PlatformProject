@@ -81,11 +81,13 @@ public class GrapplingGun : MonoBehaviour
     private float desiredDistance;
 
     public FruitMovement fruitMovement { get; private set; }
+    private PlayerMovement playerMovement;
 
     private void Start()
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
+        playerMovement = GetComponentInParent<PlayerMovement>();
 
         if (pointer == null)
             pointer = GameObject.Find("Pointer");
@@ -350,18 +352,29 @@ public class GrapplingGun : MonoBehaviour
 
     void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
     {
-        Vector3 distanceVector = lookPoint - gunPivot.position;
+        if (gunPivot == null || playerMovement == null) return;
 
-        float angle = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
-        Mathf.Clamp(angle , -1, 1);
+        Vector2 dir = lookPoint - gunPivot.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        float forward = playerMovement.isFacingRight ? 0f : 180f;
+        float relativeAngle = angle - forward;
+        relativeAngle = Mathf.Repeat(relativeAngle + 180f, 360f) - 180f;
+        relativeAngle = Mathf.Clamp(relativeAngle, -maxAngle, maxAngle);
+        float finalAngle = forward + relativeAngle;
+
+        Quaternion targetRot = Quaternion.Euler(0f, 0f, finalAngle);
+
         if (rotateOverTime && allowRotationOverTime)
-        {
-            Quaternion startRotation = gunPivot.rotation;
-            gunPivot.rotation = Quaternion.Lerp(startRotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * rotationSpeed);
-        }
+            gunPivot.rotation = Quaternion.Lerp(gunPivot.rotation, targetRot, Time.deltaTime * rotationSpeed);
         else
-            gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            gunPivot.rotation = targetRot;
+
+        Vector3 gpScale = gunPivot.localScale;
+        gpScale.y = playerMovement.isFacingRight ? 1f : -1f;
+        gunPivot.localScale = gpScale;
     }
+
 
     void SetGrapplePoint()
     {

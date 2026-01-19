@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
  
     // SoundManager soundManager; 
 
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
     PlatformMovement platformMovement;
     Animator animator;
 
