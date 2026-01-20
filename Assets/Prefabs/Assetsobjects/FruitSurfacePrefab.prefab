@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -147327725
-  m_SortingLayer: 9
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 429b5375a61ec7f488abe0e5b2de7978, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.15686275}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 2890062587747961954}
   - component: {fileID: 7531616244091774479}
   - component: {fileID: 5418036725276600839}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: FruitSurfacePrefab
   m_TagString: FruitAttacheable
   m_Icon: {fileID: 0}
@@ -170,10 +170,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -199117131
-  m_SortingLayer: 8
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 2293443574852515376, guid: 0e4a07feb91daac40ab345b2b0fed691, type: 3}
-  m_Color: {r: 0.9921569, g: 0.5058824, b: 0, a: 1}
+  m_Color: {r: 0.6030423, g: 0.8, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -205,7 +205,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3456
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -244,8 +244,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.3594672, y: -0.87715304}
-  m_Radius: 4.229007
+  m_Offset: {x: 0.3594672, y: -1.1471269}
+  m_Radius: 5.6560116
 --- !u!1 &8784647168454185163
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +324,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -199117131
-  m_SortingLayer: 8
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -7402397366019300800, guid: 82e63a87b26890a4eb3a4474bdfd5955, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.17254902}
