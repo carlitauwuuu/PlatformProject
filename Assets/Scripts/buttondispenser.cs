@@ -14,6 +14,7 @@ public class buttondispenser : MonoBehaviour
         {
             Spawnitem();
             GetComponent<SpriteRenderer> ().sprite = BoxPushed;
+            GetComponent<BoxCollider2D>().enabled = false;
         }
         
     }
