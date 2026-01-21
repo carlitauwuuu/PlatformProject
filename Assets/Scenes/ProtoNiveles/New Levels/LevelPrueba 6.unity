@@ -88646,6 +88646,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5216565287002225249, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7531616244091774479, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 3456
@@ -88653,6 +88657,10 @@ PrefabInstance:
     - target: {fileID: 8428778355878215195, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_Name
       value: FruitSurfacePrefab (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428778355878215195, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8625449198027026510, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -89690,6 +89698,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonDoorPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 8224918492637476237, guid: 93a43cd6d66a7fe4eb8fe0faa437e2b4, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1217811791}
     - target: {fileID: 8224918492637476237, guid: 93a43cd6d66a7fe4eb8fe0faa437e2b4, type: 3}
       propertyPath: buttondoor
       value: 
@@ -90764,6 +90776,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5216565287002225249, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7531616244091774479, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 3456
@@ -90771,6 +90787,10 @@ PrefabInstance:
     - target: {fileID: 8428778355878215195, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_Name
       value: FruitSurfacePrefab (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428778355878215195, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8625449198027026510, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -91242,6 +91262,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorPrefab (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3277026714500470845, guid: fba4d7c2946e2a045bc8c66e257121a0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3964577280805745006, guid: fba4d7c2946e2a045bc8c66e257121a0, type: 3}
+      propertyPath: doorClosed
+      value: 
+      objectReference: {fileID: -7341407202210888751, guid: 9b9c5e44c6b7ffe4bb054ec3a78ec99c, type: 3}
     - target: {fileID: 4850151589230366344, guid: fba4d7c2946e2a045bc8c66e257121a0, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -91292,6 +91320,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3277026714500470845, guid: fba4d7c2946e2a045bc8c66e257121a0, type: 3}
   m_PrefabInstance: {fileID: 1217811789}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1217811791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3964577280805745006, guid: fba4d7c2946e2a045bc8c66e257121a0, type: 3}
+  m_PrefabInstance: {fileID: 1217811789}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217811790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaee1713cf27c264c988c7ec39f63e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &1290522512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91576,6 +91615,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5216565287002225249, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7531616244091774479, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 3456
@@ -91583,6 +91626,10 @@ PrefabInstance:
     - target: {fileID: 8428778355878215195, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_Name
       value: FruitSurfacePrefab (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428778355878215195, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8625449198027026510, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -91965,6 +92012,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5216565287002225249, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7531616244091774479, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 3456
@@ -91972,6 +92023,10 @@ PrefabInstance:
     - target: {fileID: 8428778355878215195, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_Name
       value: FruitSurfacePrefab (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428778355878215195, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8625449198027026510, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -93107,6 +93162,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5216565287002225249, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7531616244091774479, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 3456
@@ -93114,6 +93173,10 @@ PrefabInstance:
     - target: {fileID: 8428778355878215195, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_Name
       value: FruitSurfacePrefab (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428778355878215195, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8625449198027026510, guid: cd40d4b7371389e4b86505a49035e36e, type: 3}
       propertyPath: m_LocalPosition.x

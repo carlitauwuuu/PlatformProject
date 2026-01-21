@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.69, y: 0, z: 0}
-  m_LocalScale: {x: 0.18745628, y: 0.2061644, z: 0.18745628}
+  m_LocalScale: {x: 0.16591756, y: 0.18247612, z: 0.16591756}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2530564911472380330, guid: 8095238c43b20954f8cfa881f4cfd152, type: 3}
-  m_Color: {r: 0.7830189, g: 0.19916905, b: 0.19575472, a: 1}
+  m_Color: {r: 0.8867924, g: 0.30096868, b: 0.09620863, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -150,5 +150,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23365f75da42b934bac1f4ee77d92b12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  buttondoor: {fileID: 0}
-  DoorPushed: {fileID: 21300000, guid: b35f7c5be8f5e8945aaf0f92d4dba56d, type: 3}
+  door: {fileID: 0}
+  buttonPushed: {fileID: 21300000, guid: b35f7c5be8f5e8945aaf0f92d4dba56d, type: 3}

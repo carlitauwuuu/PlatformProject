@@ -1,14 +1,16 @@
 using UnityEngine;
 
-public class buttoncontroller : MonoBehaviour
+public class ButtonController : MonoBehaviour
 {
-    [SerializeField] private GameObject buttondoor;
-    [SerializeField] private Sprite DoorPushed;
+    [SerializeField] private DoorController door;
+    [SerializeField] private Sprite buttonPushed;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        buttondoor.GetComponent<Collider2D>().enabled = true;
-        //pasar puerta a color blanco checkear script de gancho
-        GetComponent<SpriteRenderer>().sprite = DoorPushed;
+        if (collision.CompareTag("Player"))
+        {
+            door.OpenDoor();
+            GetComponent<SpriteRenderer>().sprite = buttonPushed;
+        }
     }
 }
