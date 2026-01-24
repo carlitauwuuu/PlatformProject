@@ -1,35 +1,45 @@
 using UnityEngine;
+
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance { get; private set;}
+    public static SoundManager Instance { get; private set; }
 
-    public AudioSource musicSource;
-    [SerializeField] AudioSource playerSound;
+    [Header("Audio Sources")]
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource sfxSource;
+
     private void Awake()
     {
-        
         if (Instance == null)
         {
             Instance = this;
-        
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Debug.LogError("There is two or more Sound manager");
+            Destroy(gameObject);
+            return;
         }
     }
 
     public void PlayMusic(AudioClip clip, bool loop = true)
     {
-        if (musicSource.clip == clip) return; 
+        if (musicSource.clip == clip) return;
 
         musicSource.clip = clip;
         musicSource.loop = loop;
         musicSource.Play();
     }
-    public void PlayerSound(AudioClip audioClip) 
+
+    public void PlaySFX(AudioClip clip)
     {
-        playerSound.clip = audioClip;
-        playerSound.Play();
+        sfxSource.PlayOneShot(clip);
     }
+
+    public void StopMusic()
+    {
+        musicSource.Stop();
+    }
+
+   
 }

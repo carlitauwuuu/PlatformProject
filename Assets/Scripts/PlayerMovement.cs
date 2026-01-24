@@ -112,10 +112,10 @@ public class PlayerMovement : MonoBehaviour
             if (context.performed)
             {
                 playerRigidbody2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                
+
                 //playerRigidbody2d.linearVelocity = new Vector2(playerRigidbody2d.linearVelocityX, jumpForce);
-                //SoundManager.Instance.PlayerSound(jumpSound);
-                
+                SoundManager.Instance.PlaySFX(jumpSound);
+
             }
         }     
     }

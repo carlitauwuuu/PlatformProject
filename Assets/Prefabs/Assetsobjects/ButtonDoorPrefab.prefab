@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 926821641586037807}
   - component: {fileID: 6411091558582157743}
   - component: {fileID: 8224918492637476237}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ButtonDoorPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.69, y: 0, z: 0}
-  m_LocalScale: {x: 0.16591756, y: 0.18247612, z: 0.16591756}
+  m_LocalScale: {x: 0.13786997, y: 0.15162937, z: 0.13786997}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2530564911472380330, guid: 8095238c43b20954f8cfa881f4cfd152, type: 3}
-  m_Color: {r: 0.8867924, g: 0.30096868, b: 0.09620863, a: 1}
+  m_Color: {r: 0.9339623, g: 0.7519634, b: 0.21586865, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -152,3 +152,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   door: {fileID: 0}
   buttonPushed: {fileID: 21300000, guid: b35f7c5be8f5e8945aaf0f92d4dba56d, type: 3}
+  buttonPushSound: {fileID: 8300000, guid: 9301b1baa3f9bc545911e5ad5e4d41c7, type: 3}

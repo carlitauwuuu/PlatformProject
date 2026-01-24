@@ -83,6 +83,11 @@ public class GrapplingGun : MonoBehaviour
     public FruitMovement fruitMovement { get; private set; }
     private PlayerMovement playerMovement;
 
+    [Header("Sound")]
+    [SerializeField] private AudioClip tongueShootSound;
+    [SerializeField] private AudioClip grappleHitSound;   
+    [SerializeField] private AudioClip eatFlySound;       
+
     private void Start()
     {
         grappleRope.enabled = false;
@@ -226,6 +231,9 @@ public class GrapplingGun : MonoBehaviour
                     ActivateForm(2);
                 else if (layer == LayerMask.NameToLayer("Yellow"))
                     ActivateForm(3);
+
+                if (eatFlySound != null)
+                    SoundManager.Instance.PlaySFX(eatFlySound);
 
                 Destroy(grabbedFly);
                 grabbedFly = null;
@@ -397,6 +405,9 @@ public class GrapplingGun : MonoBehaviour
                 fruitMovement = hit.collider.GetComponent<FruitMovement>();
                 grappleTarget = hit.collider.transform;
                 grappleLocalOffset = hit.point - (Vector2)grappleTarget.position;
+
+                if (grappleHitSound != null)
+                    SoundManager.Instance.PlaySFX(grappleHitSound);
             }
             else if (hit.collider.CompareTag("Fly"))
             {
@@ -405,6 +416,9 @@ public class GrapplingGun : MonoBehaviour
                 m_springJoint2D.enabled = false;
 
                 grapplePoint = hit.point;
+
+                if (grappleHitSound != null)
+                    SoundManager.Instance.PlaySFX(grappleHitSound);
             }
             else if (hit.collider.gameObject.layer != gameObject.layer || hit.collider.CompareTag("Player"))
             {
@@ -415,6 +429,9 @@ public class GrapplingGun : MonoBehaviour
         {
 
             grapplePoint = (Vector2)firePoint.position + direction * distance;
+
+            if (tongueShootSound != null)
+                SoundManager.Instance.PlaySFX(tongueShootSound);
         }
 
 

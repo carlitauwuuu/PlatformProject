@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 3523223785145538606}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.198, y: -0.66, z: 0}
+  m_LocalPosition: {x: -0.198, y: -0.701, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 4120869825492383596}
   - component: {fileID: 8385489666391702400}
   - component: {fileID: 8037213564409165159}
+  - component: {fileID: 4721600231145823633}
   m_Layer: 0
   m_Name: Player.NEWSYS
   m_TagString: Player
@@ -506,8 +507,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.14399518, y: -0.19201714}
-  m_Size: {x: 0.7729952, y: 0.75922537}
+  m_Offset: {x: -0.005264617, y: -0.22004162}
+  m_Size: {x: 1.0556989, y: 0.7326773}
   m_Direction: 1
 --- !u!50 &6055101335796979237
 Rigidbody2D:
@@ -561,7 +562,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 3520
-  jumpSound: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: e804dc59ec885f24a8100cd44bfd1b6c, type: 3}
   isFacingRight: 1
   grapplingGun: {fileID: 5915004536601259621}
 --- !u!95 &4120869825492383596
@@ -618,9 +619,67 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 114.89604, y: -18.255316}
   m_AutoConfigureDistance: 1
-  m_Distance: 147.73363
+  m_Distance: 84.806656
   m_DampingRatio: 1
   m_Frequency: 20
+--- !u!212 &4721600231145823633
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5959400798181198859}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &6293688396142857142
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,7 +1001,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!1 &7577377435714962022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1142,9 @@ MonoBehaviour:
   DistanceVector: {x: 0, y: 0}
   playerRB: {fileID: 6055101335796979237}
   grappleTarget: {fileID: 0}
+  tongueShootSound: {fileID: 8300000, guid: 7a890616f4a05954394eafd917344523, type: 3}
+  grappleHitSound: {fileID: 8300000, guid: 6f5451b6296bdb14e8a272825ebf51d6, type: 3}
+  eatFlySound: {fileID: 8300000, guid: 06872c56361f42442ba40287f4f147b4, type: 3}
 --- !u!1 &8186089334726150942
 GameObject:
   m_ObjectHideFlags: 0
