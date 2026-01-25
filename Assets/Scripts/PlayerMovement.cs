@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
       animator = GetComponent<Animator>();
       walkParticles = GetComponentInChildren<ParticleSystem>();
         wasGrounded = IsGrounded();
+        Cursor.visible = false;
 
     }
 

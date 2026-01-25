@@ -89735,6 +89735,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonDoorPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 7195537183631393640, guid: 93a43cd6d66a7fe4eb8fe0faa437e2b4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8224918492637476237, guid: 93a43cd6d66a7fe4eb8fe0faa437e2b4, type: 3}
       propertyPath: door
       value: 
