@@ -507,8 +507,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.005264617, y: -0.22004162}
-  m_Size: {x: 1.0556989, y: 0.7326773}
+  m_Offset: {x: 0.039873984, y: -0.25228223}
+  m_Size: {x: 0.93103814, y: 0.6682}
   m_Direction: 1
 --- !u!50 &6055101335796979237
 Rigidbody2D:
@@ -563,6 +563,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3520
   jumpSound: {fileID: 8300000, guid: e804dc59ec885f24a8100cd44bfd1b6c, type: 3}
+  landSound: {fileID: 8300000, guid: 22fe56e61fa8ab74482ca8d128198288, type: 3}
   isFacingRight: 1
   grapplingGun: {fileID: 5915004536601259621}
 --- !u!95 &4120869825492383596
@@ -619,7 +620,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 114.89604, y: -18.255316}
   m_AutoConfigureDistance: 1
-  m_Distance: 84.806656
+  m_Distance: 152.57599
   m_DampingRatio: 1
   m_Frequency: 20
 --- !u!212 &4721600231145823633

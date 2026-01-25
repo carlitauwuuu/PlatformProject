@@ -27,8 +27,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Sound")]
     [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip landSound;
+    private bool wasGrounded;
 
- 
+
     // SoundManager soundManager; 
 
     public bool isFacingRight = true;
@@ -45,11 +47,21 @@ public class PlayerMovement : MonoBehaviour
       // soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
       animator = GetComponent<Animator>();
       walkParticles = GetComponentInChildren<ParticleSystem>();
+        wasGrounded = IsGrounded();
 
     }
 
     void FixedUpdate()
     {
+        bool groundedNow = IsGrounded();
+
+        if (!wasGrounded && groundedNow)
+        {
+            SoundManager.Instance.PlaySFX(landSound);
+        }
+
+        wasGrounded = groundedNow;
+
         FlipPlayer();
 
         if (Mathf.Abs(playerDirection.x) > minVelocityPlayer)

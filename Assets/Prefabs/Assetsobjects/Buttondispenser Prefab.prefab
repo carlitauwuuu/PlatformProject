@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2530564911472380330, guid: 8095238c43b20954f8cfa881f4cfd152, type: 3}
-  m_Color: {r: 0.8584906, g: 0.17412782, b: 0.24231014, a: 1}
+  m_Color: {r: 0.8396226, g: 0.24612005, b: 0.2415895, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c4f84aa162f3d54196a31c971e87f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  Box: {fileID: 2886400314575101893, guid: fe3c15764034d91459bcd97815c70bc7, type: 3}
+  Box: {fileID: 2886400314575101893, guid: 3ed1b79a878c65647b9459a4b6b7ef11, type: 3}
   spawn: {fileID: 0}
   BoxPushed: {fileID: 21300000, guid: b35f7c5be8f5e8945aaf0f92d4dba56d, type: 3}
+  buttonPushSound: {fileID: 8300000, guid: 9301b1baa3f9bc545911e5ad5e4d41c7, type: 3}
